@@ -19,11 +19,16 @@
             "testTsconfig": "tsconfig.spec.json",
             "prefix": "app",
             "styles": [
+                "../node_modules/normalize.css/normalize.css",
+                "../node_modules/bootstrap/dist/css/bootstrap.min.css",
                 "assets/3rd-party/bootstrap-material/sass/bootstrap-material-design.scss",
                 "assets/3rd-party/bootstrap-material/sass/ripples.scss",
                 "styles.scss"
             ],
             "scripts": [
+                "../node_modules/jquery/dist/jquery.min.js",
+                "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+                "../node_modules/arrive/minified/arrive.min.js",
                 "assets/3rd-party/bootstrap-material/scripts/material.js",
                 "assets/3rd-party/bootstrap-material/scripts/ripples.js"
             ],
