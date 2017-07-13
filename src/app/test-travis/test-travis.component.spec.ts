@@ -25,6 +25,20 @@ describe('TestTravisComponent', () => {
 
 describe('HowToKarma', () => {
     let component: TestTravisComponent;
+    let fixture: ComponentFixture<TestTravisComponent>;
+
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [ TestTravisComponent ]
+        }).compileComponents();
+    }));
+
+    beforeEach(() => {
+        fixture = TestBed.createComponent(TestTravisComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
     it ('Test', () => {
         expect(component.test).toBe(true);
     })
