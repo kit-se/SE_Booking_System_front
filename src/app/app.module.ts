@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { TestTravisModule } from './test-travis/test-travis.module';
 
 @NgModule({
     declarations: [
@@ -11,6 +12,8 @@ import { AppComponent } from './app.component';
     imports: [
         BrowserModule,
         AppRoutingModule,
+
+        TestTravisModule
     ],
     providers: [],
     bootstrap: [ AppComponent ]
