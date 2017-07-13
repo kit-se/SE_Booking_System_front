@@ -27,4 +27,4 @@ before_script:
   - ng build --prod
 
 script:
-  - karma start config/karma.conf.js --single-run
+  - karma start karma.conf.js --single-run
