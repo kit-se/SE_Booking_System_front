@@ -26,6 +26,6 @@ describe('TestTravisComponent', () => {
 describe('HowToKarma', () => {
     let component: TestTravisComponent;
     it ('Test', () => {
-        expect(component.test).toBe(false);
+        expect(component.test).toBe(true);
     })
 });
