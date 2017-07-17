@@ -8,8 +8,7 @@
             "root": "src",
             "outDir": "dist",
             "assets": [
-                "assets",
-                "favicon.ico"
+                "assets"
             ],
             "index": "index.html",
             "main": "main.ts",
@@ -30,7 +29,8 @@
                 "../node_modules/bootstrap/dist/js/bootstrap.min.js",
                 "../node_modules/arrive/minified/arrive.min.js",
                 "assets/3rd-party/bootstrap-material/scripts/material.js",
-                "assets/3rd-party/bootstrap-material/scripts/ripples.js"
+                "assets/3rd-party/bootstrap-material/scripts/ripples.js",
+                "../node_modules/moment/min/moment.min.js"
             ],
             "environmentSource": "environments/environment.ts",
             "environments": {
