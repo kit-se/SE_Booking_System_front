@@ -4,12 +4,10 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { MainModule } from './main/main.module';
-import { NavbarComponent } from './shared/component/navbar/navbar.component';
 
 @NgModule({
     declarations: [
-        AppComponent,
-        NavbarComponent
+        AppComponent
     ],
     imports: [
         BrowserModule,
