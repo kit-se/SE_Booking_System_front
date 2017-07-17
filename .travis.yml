@@ -30,5 +30,5 @@ before_install:
 install:
   - yarn install
 script:
-  - ng test --watch false
-  - ng e2e
+  # - ng test --watch false
+  # - ng e2e
