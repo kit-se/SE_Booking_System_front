@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { MainModule } from './main/main.module';
+import { FooterModule } from './shared/component/footer/footer.module';
 
 @NgModule({
     declarations: [
@@ -13,7 +14,8 @@ import { MainModule } from './main/main.module';
         BrowserModule,
         AppRoutingModule,
 
-        MainModule
+        MainModule,
+        FooterModule
     ],
     providers: [],
     bootstrap: [ AppComponent ]
