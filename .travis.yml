@@ -32,3 +32,4 @@ install:
 script:
   # - ng test --watch false
   # - ng e2e
+  - ng build --prod
