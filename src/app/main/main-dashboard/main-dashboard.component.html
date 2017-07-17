@@ -1,12 +1,12 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <ul class="nav nav-tabs">
-            <li><a>Today</a></li>
-            <li><a>Tomorrow</a></li>
+            <li><a (click)="switchDate('today')">Today</a></li>
+            <li><a (click)="switchDate('tomorrow')">Tomorrow</a></li>
         </ul>
     </div>
     <div class="panel-body">
-        <h2>예약 현황</h2>
+        <h2>예약 현황 ({{ date }})</h2>
         <ul class="list-group">
             <li class="list-group-item">
                 <app-usage-graph [title]="'A1'"></app-usage-graph>

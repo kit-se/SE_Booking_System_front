@@ -5,7 +5,7 @@
     <div class="col-lg-11">
         <div class="graph-background">
             <div class="graph" [ngClass]="{'active': time}" *ngFor="let time of timeTable; let i = index">
-                <a (click)="navigateBookingPage( i )">{{ i }}</a>
+                <a>{{ i }}</a>
             </div>
         </div>
     </div>

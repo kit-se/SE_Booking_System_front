@@ -21,12 +21,4 @@ export class UsageGraphComponent implements OnInit {
             }
         }
     }
-
-    public navigateBookingPage( bookingTime: number ) {
-        if ( this.timeTable[ bookingTime ] ) {
-            alert('이미 예약된 시간 입니다. 다른 시간을 선택해주세요');
-        } else {
-            this.router.navigate(['/book'], {queryParams: {bookingTime: bookingTime}})
-        }
-    }
 }
