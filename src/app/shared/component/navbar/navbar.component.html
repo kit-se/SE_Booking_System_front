@@ -8,7 +8,7 @@
             <input type="text" class="form-control" placeholder="아이디" formControlName="id">
             <input type="password" class="form-control" placeholder="비밀번호" formControlName="password">
         </form>
-        <div class="navbar-nav navbar-right">
+        <div class="navbar-nav navbar-right" *ngIf="isLogin">
             <p class="navbar-text">{{id}} 님</p>
         </div>
     </div>

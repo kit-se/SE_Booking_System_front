@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../service/login.service';
 
@@ -37,6 +37,8 @@ export class NavbarComponent implements OnInit {
                     if ( res.result === 'login success' ) {
                         alert(`안녕하세요! ${value.id}님`);
                         sessionStorage.setItem('id', value.id);
+                        this.isLogin = true;
+                        this.id = value.id;
                     } else {
                         alert(`아이디 혹은 비밀번호가 틀렸습니다.`);
                     }
