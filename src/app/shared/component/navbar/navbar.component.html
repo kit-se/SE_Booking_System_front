@@ -1,11 +1,15 @@
 <nav class="navbar navbar-default">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" [routerLink]="['/main']">330 예약 시스템</a>
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" [routerLink]="['/main']">330 예약 시스템</a>
+        </div>
+        <form class="navbar-form navbar-right" *ngIf="!isLogin" [formGroup]="loginFormGroup"
+              (keydown.enter)="login(loginFormGroup)">
+            <input type="text" class="form-control" placeholder="아이디" formControlName="id">
+            <input type="password" class="form-control" placeholder="비밀번호" formControlName="password">
+        </form>
+        <div class="navbar-nav navbar-right">
+            <p class="navbar-text">{{id}} 님</p>
+        </div>
     </div>
-    <form class="navbar-form navbar-right">
-      <input type="text" class="form-control" placeholder="아이디">
-      <input type="password" class="form-control" placeholder="비밀번호">
-    </form>
-  </div>
 </nav>
