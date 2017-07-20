@@ -1,44 +1,44 @@
 <app-navbar></app-navbar>
 <div class="container">
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <a [routerLink]="['/']">신고 현황</a>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <a [routerLink]="['/admin/report']">신고 현황</a>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <p class="col-lg-5">
+                                    <a [routerLink]="['/']">신고 제목</a>
+                                </p>
+                                <p class="col-lg-4">처리 결과</p>
+                                <p class="col-lg-3">2017-07-17</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="panel-body">
-          <ul class="list-group">
-            <li class="list-group-item">
-              <div class="row">
-                <p class="col-lg-5">
-                  <a [routerLink]="['/']">신고 제목</a>
-                </p>
-                <p class="col-lg-4">처리 결과</p>
-                <p class="col-lg-3">2017-07-17</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
 
-    <div class="col-lg-6">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <a [routerLink]="['/']">제재 현황</a>
+        <div class="col-lg-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <a [routerLink]="['/']">제재 현황</a>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <p class="col-lg-5">제재자 이름</p>
+                                <p class="col-lg-4">예약 정지 3일</p>
+                                <p class="col-lg-3">2017-07-17</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="panel-body">
-          <ul class="list-group">
-            <li class="list-group-item">
-              <div class="row">
-                <p class="col-lg-5">제재자 이름</p>
-                <p class="col-lg-4">예약 정지 3일</p>
-                <p class="col-lg-3">2017-07-17</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
