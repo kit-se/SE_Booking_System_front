@@ -10,6 +10,7 @@ import { LoginService } from '../../service/login.service';
 export class NavbarComponent implements OnInit {
     loginFormGroup: FormGroup;
     isLogin: boolean;
+    isAdmin: boolean;
     id: number;
 
     constructor (private loginService: LoginService, private fb: FormBuilder) {
@@ -18,6 +19,9 @@ export class NavbarComponent implements OnInit {
     ngOnInit () {
         this.id = +sessionStorage.getItem('id');
         this.id ? this.isLogin = true : this.isLogin = false;
+
+        // todo: server know this id is admin.
+        this.id === 20120350 ? this.isAdmin = true : this.isAdmin = false;
 
 
         this.loginFormGroup = this.fb.group({
