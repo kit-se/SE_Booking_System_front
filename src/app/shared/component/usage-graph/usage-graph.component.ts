@@ -14,7 +14,7 @@ export class UsageGraphComponent implements OnInit {
     }
 
     ngOnInit () {
-        this.timeTable = new Array(24);
+        this.timeTable = new Array(12);
         for ( let i = 0; i < this.timeTable.length; i++ ) {
             if( i === 7 || i === 8 || i === 9 ) {
                 this.timeTable[i] = true; // true 는 이미 예약된 시간이라는 뜻.
