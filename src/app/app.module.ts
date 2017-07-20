@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +13,8 @@ import { FooterModule } from './shared/component/footer/footer.module';
     ],
     imports: [
         BrowserModule,
+        HttpClientModule,
+
         AppRoutingModule,
 
         MainModule,
