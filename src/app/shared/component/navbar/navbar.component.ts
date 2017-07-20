@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../service/login.service';
 
@@ -44,7 +44,7 @@ export class NavbarComponent implements OnInit {
                     }
                 },
                 (error: any) => {
-                    alert(error);
+                    alert(error.message);
                 }
             );
         } else {

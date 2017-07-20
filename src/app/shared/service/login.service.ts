@@ -10,6 +10,8 @@ export class LoginService {
     }
 
     login (id: number, password: string) {
-        return this.http.get(`http://localhost:3000/login?id=${id}&password=${password}`);
+        const token: string = 'Bearer ' + btoa(`${id}:${password}`);
+        const header: HttpHeaders = new HttpHeaders().set('Authorization', token);
+        return this.http.post(`http://localhost:3000/login`, null, { headers: header });
     }
 }
