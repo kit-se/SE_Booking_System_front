@@ -33,3 +33,8 @@ script:
   # - ng test --watch false
   # - ng e2e
   - ng build --prod
+
+deploy:
+  provider: firebase
+  token:
+    secure: $FIREBASE_TOKEN
