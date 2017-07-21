@@ -11,7 +11,7 @@ export class NavbarComponent implements OnInit {
     loginFormGroup: FormGroup;
     isLogin: boolean;
     isAdmin: boolean;
-    id: number;
+    id: string;
 
     constructor (private loginService: LoginService, private fb: FormBuilder) {
     }
@@ -54,9 +54,9 @@ export class NavbarComponent implements OnInit {
     }
 
     public checkUserInfo() {
-        this.id = +sessionStorage.getItem('id');
+        this.id = sessionStorage.getItem('id');
         this.id ? this.isLogin = true : this.isLogin = false;
         // todo: server know this id is admin.
-        this.id === 20120350 ? this.isAdmin = true : this.isAdmin = false;
+        this.id === '20120350' ? this.isAdmin = true : this.isAdmin = false;
     }
 }
