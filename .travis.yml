@@ -38,3 +38,4 @@ deploy:
   provider: firebase
   token:
     secure: $FIREBASE_TOKEN
+  project: "manage-e5177"
