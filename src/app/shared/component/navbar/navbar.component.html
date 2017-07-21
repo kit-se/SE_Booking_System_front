@@ -8,9 +8,9 @@
             <input type="text" class="form-control" placeholder="아이디" formControlName="id">
             <input type="password" class="form-control" placeholder="비밀번호" formControlName="password">
         </form>
-        <ul class="nav navbar-nav navbar-right" *ngIf="isLogin">
+        <ul class="nav navbar-nav navbar-right">
             <li>
-                <a [routerLink]="['/admin']" *ngIf="isAdmin">관리자 페이지</a>
+                <a [routerLink]="['/admin']">관리자 페이지</a>
             </li>
             <li>
                 <a>{{id}} 님</a>
