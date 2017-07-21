@@ -15,15 +15,15 @@ export class MainDashboardComponent implements OnInit {
 
     ngOnInit () {
         this.dateFlag = 'today';
-        this.date = moment().format('YYYY-MM-DD');
+        this.date = moment().format('YY. MM. DD');
     }
 
     public switchDate( date: string ) {
         this.dateFlag = date;
         if ( this.dateFlag === 'today' ) {
-            this.date = moment().format('YYYY-MM-DD');
+            this.date = moment().format('YY. MM. DD');
         } else if ( this.dateFlag === 'tomorrow' ) {
-            this.date = moment().add(1, 'days').format('YYYY-MM-DD');
+            this.date = moment().add(1, 'days').format('YY. MM. DD');
         }
     }
 }

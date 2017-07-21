@@ -1,11 +1,16 @@
 <div class="row">
-    <div class="col-lg-1">
+    <div class="col-lg-1 col-md-1 col-sm-1">
         <h4 class="list-group-item-heading">{{ title }}</h4>
     </div>
-    <div class="col-lg-11">
+    <div class="col-lg-11 col-md-11 col-sm-11">
         <div class="graph-background">
-            <div class="graph" [ngClass]="{'active': time}" *ngFor="let time of timeTable; let i = index">
+            <div class="graph" [ngClass]="{'active': time}" *ngFor="let time of timeTable | slice:0:12; let i = index" (click)="selectBookingTime( i )">
                 {{ i }}
+            </div>
+        </div>
+        <div class="graph-background">
+            <div class="graph" [ngClass]="{'active': time}" *ngFor="let time of timeTable | slice:12:24; let i = index" (click)="selectBookingTime( i + 12 )">
+                {{ i + 12 }}
             </div>
         </div>
     </div>

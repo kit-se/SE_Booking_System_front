@@ -7,18 +7,18 @@ import { Router } from '@angular/router';
 })
 export class UsageGraphComponent implements OnInit {
     @Input() title: string;
-    timeTable: Array<boolean>;
-
+    timeTable = [];
+    selectedTime = [];
 
     constructor (private router: Router) {
     }
 
     ngOnInit () {
         this.timeTable = new Array(24);
-        for ( let i = 0; i < this.timeTable.length; i++ ) {
-            if( i === 7 || i === 8 || i === 9 ) {
-                this.timeTable[i] = true; // true 는 이미 예약된 시간이라는 뜻.
-            }
-        }
+    }
+
+    selectBookingTime ( time: number ) {
+        this.timeTable[ time ] = true;
+        this.selectedTime.push( time );
     }
 }
