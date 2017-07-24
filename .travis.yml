@@ -13,12 +13,11 @@ branches:
   - master
 before_install:
   - npm install -g @angular/cli
+  - npm install -g firebase-tools
 install:
   - npm install
 script:
   - ng build --prod
 
-deploy:
-  provider: firebase
-  token: $FIREBASE_TOKEN
-  project: "330manage"
+after_success:
+  - firebase deploy --token $FIREBASE_TOKEN
