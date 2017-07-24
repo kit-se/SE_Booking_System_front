@@ -20,6 +20,5 @@ script:
 
 deploy:
   provider: firebase
-  token:
-    secure: $FIREBASE_TOKEN
+  token: $FIREBASE_TOKEN
   project: "330manage"
