@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainModule } from './main/main.module';
 import { FooterModule } from './shared/component/footer/footer.module';
+import { GlobalService } from './shared/service/global.service';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,7 @@ import { FooterModule } from './shared/component/footer/footer.module';
         MainModule,
         FooterModule
     ],
-    providers: [],
+    providers: [ GlobalService ],
     bootstrap: [ AppComponent ]
 })
 

@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NavbarComponent } from './navbar.component';
 import { RouterModule } from '@angular/router';
-import { LoginService } from '../../service/login.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginService } from '../../http/login.service';
 
 @NgModule({
     imports: [

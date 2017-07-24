@@ -1,17 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-
-import 'rxjs/add/operator/do';
+import { Inject, Injectable } from '@angular/core';
+import { GlobalService } from '../service/global.service';
 
 @Injectable()
 export class LoginService {
+    constructor (private http: HttpClient, @Inject(GlobalService) private global:GlobalService) {
 
-    constructor (private http: HttpClient) {
     }
 
     login (id: number, password: string) {
         const token: string = 'Bearer ' + btoa(`${id}:${password}`);
         const header: HttpHeaders = new HttpHeaders().set('Authorization', token);
-        return this.http.post(`http://localhost:3000/login`, null, { headers: header });
+        return this.http.post(`${this.global.url}/login`, null, { headers: header });
     }
 }
