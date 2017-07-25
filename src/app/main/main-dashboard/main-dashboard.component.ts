@@ -9,6 +9,7 @@ import * as moment from 'moment';
 export class MainDashboardComponent implements OnInit {
     dateFlag: string;
     date: string;
+    selectedTitle: string;
 
     constructor () {
     }
@@ -16,6 +17,7 @@ export class MainDashboardComponent implements OnInit {
     ngOnInit () {
         this.dateFlag = 'today';
         this.date = moment().format('YY. MM. DD');
+        this.selectedTitle = '';
     }
 
     public switchDate( date: string ) {
