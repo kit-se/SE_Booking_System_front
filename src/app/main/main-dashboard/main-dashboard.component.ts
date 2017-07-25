@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
@@ -10,6 +10,7 @@ export class MainDashboardComponent implements OnInit {
     dateFlag: string;
     date: string;
     selectedTitle: string;
+    sectionList: string[];
 
     constructor () {
     }
@@ -18,6 +19,7 @@ export class MainDashboardComponent implements OnInit {
         this.dateFlag = 'today';
         this.date = moment().format('YY. MM. DD');
         this.selectedTitle = '';
+        this.sectionList = ['A1', 'A2', 'A3', 'B1', 'B2'];
     }
 
     public switchDate( date: string ) {
