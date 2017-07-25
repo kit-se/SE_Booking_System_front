@@ -9,9 +9,9 @@
         <h2>예약 현황 ({{ date }})</h2>
         <ul class="list-group">
             <li class="list-group-item" *ngFor="let section of sectionList">
-                <app-usage-graph [title]="section" [disabled]="selectedTitle !== '' && selectedTitle !== section" (selected)="selectedTitle = $event"></app-usage-graph>
+                <app-usage-graph [section]="section" [disabled]="selectedSection !== '' && selectedSection !== section" (selectedSection)="selectedSection = $event" (selectedTimeOutput)="selectedTime = $event"></app-usage-graph>
             </li>
-            <button class="btn btn-raised btn-primary pull-right">예약 하기</button>
+            <button class="btn btn-raised btn-primary pull-right" (click)="book()">예약 하기</button>
         </ul>
     </div>
 </div>
