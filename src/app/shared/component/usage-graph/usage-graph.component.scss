@@ -13,11 +13,11 @@
         padding: 5px 0;
         display: inline-block;
         text-align: center;
-        &.active {
+        &.booked {
             background-color: #2196F3;
         }
-        a {
-            color: #000000;
+        &.disabled {
+            opacity: 0.3;
         }
     }
 }
