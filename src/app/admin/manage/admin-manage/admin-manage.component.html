@@ -1,0 +1,57 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="list-group">
+            <div class="manager list-group-item">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                        <p>20120350</p>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                        <p>김종현</p>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                        <p>학생회</p>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                        <p class="pull-right"><i class="material-icons">delete</i></p>
+                    </div>
+                </div>
+                <div class="list-group-separator"></div>
+            </div>
+            <div class="manager list-group-item">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                        <p>20122053</p>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                        <p>손우규</p>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                        <p>학생회장</p>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                        <p class="pull-right"><i class="material-icons">delete</i></p>
+                    </div>
+                </div>
+                <div class="list-group-separator"></div>
+            </div>
+            <div class="manager list-group-item" *ngIf="isAdding">
+                <div class="form-group row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                        <input type="text" class="form-control" placeholder="학번">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                        <input type="text" class="form-control" placeholder="이름">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                        <input type="text" class="form-control" placeholder="직책">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pull-right">
+            <button class="btn btn-raised btn-info" *ngIf="!isAdding" (click)="isAdding = true">관리자 추가</button>
+            <button class="btn btn-raised btn-info" *ngIf="isAdding" (click)="addAdmin()">확인</button>
+        </div>
+    </div>
+</div>
