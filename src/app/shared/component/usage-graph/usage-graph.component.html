@@ -4,13 +4,13 @@
     </div>
     <div class="col-lg-11 col-md-11 col-sm-11">
         <div class="graph-background">
-            <div class="graph" [ngClass]="{'booked': time, 'disabled': disabled}" *ngFor="let time of timeTable | slice:0:12; let i = index" (click)="selectBookingTime( i )">
-                <p>{{ i }}</p>
+            <div class="graph" [ngClass]="{'booked': bookingTable[i], 'disabled': disabled}" *ngFor="let time of timeTable | slice:0:12; let i = index" (click)="selectBookingTime( time )">
+                <p>{{ time }}</p>
             </div>
         </div>
         <div class="graph-background">
-            <div class="graph" [ngClass]="{'booked': time, 'disabled': disabled}" *ngFor="let time of timeTable | slice:12:24; let i = index" (click)="selectBookingTime( i + 12 )">
-                <p>{{ i + 12 }}</p>
+            <div class="graph" [ngClass]="{'next-day': time < 6, 'booked': bookingTable[i + 12], 'disabled': disabled}" *ngFor="let time of timeTable | slice:12:24; let i = index" (click)="selectBookingTime( time )">
+                <p>{{ time }}</p>
             </div>
         </div>
     </div>
