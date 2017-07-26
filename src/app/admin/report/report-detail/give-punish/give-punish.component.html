@@ -17,9 +17,7 @@
                 <label class="col-lg-3 control-label">제재 기간</label>
                 <div class="col-lg-9">
                     <select class="form-control">
-                        <option value="">1일</option>
-                        <option value="">2일</option>
-                        <option value="">3일</option>
+                        <option [value]="date + 1" *ngFor="let none of dateIterator; let date = index">{{ date + 1 }} 일</option>
                     </select>
                 </div>
             </div>
