@@ -32,6 +32,7 @@
     "ngx-bootstrap": "^1.7.1",
     "normalize.css": "^7.0.0",
     "rxjs": "^5.1.0",
+    "summernote": "^0.8.6",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
