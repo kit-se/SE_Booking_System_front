@@ -19,4 +19,9 @@ export class AdminManageComponent implements OnInit {
         // todo 서버로 관리자 전송
         this.isAdding = false;
     }
+
+    public deleteAdmin() {
+        // todo 삭제할 admin id 받아 와야함.
+        // todo 서버로 삭제 보냄
+    }
 }
