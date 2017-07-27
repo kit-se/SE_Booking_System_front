@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { MainModule } from './main/main.module';
 import { FooterModule } from './shared/component/footer/footer.module';
 import { GlobalService } from './shared/service/global.service';
+import { TestWysiwygModule } from './test-wysiwyg/test-wysiwyg.module';
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { GlobalService } from './shared/service/global.service';
         AppRoutingModule,
 
         MainModule,
+        TestWysiwygModule,
         FooterModule
     ],
     providers: [ GlobalService ],
