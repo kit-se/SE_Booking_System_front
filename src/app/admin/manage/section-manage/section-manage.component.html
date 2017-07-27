@@ -29,6 +29,7 @@
                 <div class="pull-right">
                     <button type="button" class="btn btn-raised btn-info" *ngIf="!isAdding" (click)="isAdding = true">공간 추가</button>
                     <button type="button" class="btn btn-raised btn-info" *ngIf="isAdding" (click)="addSection()">확인</button>
+                    <button type="button" class="btn btn-raised btn-danger" *ngIf="isAdding" (click)="isAdding = false">취소</button>
                 </div>
             </div>
         </div>
