@@ -44,6 +44,13 @@ export class TestWysiwygComponent implements OnInit, OnDestroy {
         $('#summernote').summernote('destroy');
     }
 
+    public submit () {
+        this.code = $('#summernote').summernote('code');
+        console.log(this.fileList);
+        // todo code랑 filelist 서버로 보내면 됨 multipart로
+    }
+
+    // 사진에 대한 데이터 스키마 생성, 파일리스트에 등록
     private makePreview (file: File) {
         const reader: FileReader = new FileReader();
         reader.addEventListener('load', () => {
@@ -54,15 +61,8 @@ export class TestWysiwygComponent implements OnInit, OnDestroy {
         reader.readAsDataURL(file);
     }
 
-    public submit () {
-        this.code = $('#summernote').summernote('code');
-        console.log(this.fileList);
-    }
-
     public deletePicture( index: number ) {
         this.previewList.splice( index, 1 );
         this.fileList.splice( index, 1 );
-
-        console.log( this.previewList, this.fileList );
     }
 }
