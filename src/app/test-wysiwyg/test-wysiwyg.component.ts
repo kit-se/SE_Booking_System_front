@@ -19,22 +19,24 @@ export class TestWysiwygComponent implements OnInit, OnDestroy {
         this.fileList = [];
         this.previewList = [];
 
+        // wysiwyg init
         $('#summernote').summernote({
             height: 300,
             toolbar: [
-                [ 'insert', [ 'picture' ] ],
                 ['fontsize', ['fontsize']],
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                [ 'insert', [ 'picture' ] ],
+                ['para', ['ul', 'ol']],
             ],
             callbacks: {
                 onImageUpload: (files) => {
                     for ( let i = 0; i < files.length; i++ ) {
-                        this.fileList.push(files[ i ]);
                         this.makePreview(files[ i ]);
                     }
                 }
             }
         });
-
+        // reset
         $('#summernote').summernote('code', '');
     }
 
@@ -45,6 +47,7 @@ export class TestWysiwygComponent implements OnInit, OnDestroy {
     private makePreview (file: File) {
         const reader: FileReader = new FileReader();
         reader.addEventListener('load', () => {
+            this.fileList.push(file);
             this.previewList.push(reader.result);
         });
 
@@ -54,5 +57,12 @@ export class TestWysiwygComponent implements OnInit, OnDestroy {
     public submit () {
         this.code = $('#summernote').summernote('code');
         console.log(this.fileList);
+    }
+
+    public deletePicture( index: number ) {
+        this.previewList.splice( index, 1 );
+        this.fileList.splice( index, 1 );
+
+        console.log( this.previewList, this.fileList );
     }
 }
