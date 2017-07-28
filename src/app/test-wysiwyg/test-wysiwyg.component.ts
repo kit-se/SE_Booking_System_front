@@ -12,6 +12,14 @@ export class TestWysiwygComponent implements OnInit {
     ngOnInit () {
         $('#summernote').summernote({
             height: 300,
+            toolbar: [
+                ['insert', ['picture']]
+            ]
         });
+    }
+
+    public submit() {
+        const code = $('#summernote').summernote('code');
+        console.log( code );
     }
 }
