@@ -1,10 +1,22 @@
+<app-navbar></app-navbar>
+
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-body">
+            <input type="text" class="form-control">
             <div id="summernote">Hello Summernote</div>
-            <button class="btn btn-raised btn-default" (click)="submit()">확인</button>
-
-            <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAAXNSR…KwXvSXKpsiBHSdbfBpQyqeGlIWL/nBBbQAkKeQFWOgitkFH9dg5B0Q3dwAAAAASUVORK5CYII=" data-filename="favicon.png" style="width: 16px;">Hello Summernote</p>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="preview-wrapper">
+                        <img class="preview" *ngFor="let preview of previewList" [src]="preview">
+                    </div>
+                    <p class="hint" *ngIf="previewList.length !== 0">첨부된 사진은 클릭시 삭제 됩니다.</p>
+                </div>
+            </div>
+            <div class="pull-right">
+                <button class="btn btn-raised btn-primary" (click)="submit()">등록</button>
+                <button class="btn btn-raised btn-danger">취소</button>
+            </div>
         </div>
     </div>
 </div>
