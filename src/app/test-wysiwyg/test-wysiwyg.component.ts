@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 declare const $: any;
 
@@ -7,7 +7,7 @@ declare const $: any;
     templateUrl: './test-wysiwyg.component.html',
     styleUrls: [ './test-wysiwyg.component.scss' ]
 })
-export class TestWysiwygComponent implements OnInit {
+export class TestWysiwygComponent implements OnInit, OnDestroy {
     fileList: File[];
     previewList: any[];
     code: string;
@@ -22,7 +22,8 @@ export class TestWysiwygComponent implements OnInit {
         $('#summernote').summernote({
             height: 300,
             toolbar: [
-                [ 'insert', [ 'picture' ] ]
+                [ 'insert', [ 'picture' ] ],
+                ['fontsize', ['fontsize']],
             ],
             callbacks: {
                 onImageUpload: (files) => {
@@ -33,6 +34,12 @@ export class TestWysiwygComponent implements OnInit {
                 }
             }
         });
+
+        $('#summernote').summernote('code', '');
+    }
+
+    ngOnDestroy () {
+        $('#summernote').summernote('destroy');
     }
 
     private makePreview (file: File) {
