@@ -9,7 +9,6 @@ import { NavbarModule } from "app/shared/component/navbar/navbar.module";
   imports: [
     CommonModule,
     MypageRoutingModule,
-
     NavbarModule
   ],
   declarations: [MypageComponent]
