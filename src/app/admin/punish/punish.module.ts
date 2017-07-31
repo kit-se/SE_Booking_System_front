@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { PaginationModule } from 'ngx-bootstrap';
+import { NavbarModule } from '../shared/component/navbar/navbar.module';
 
 import { PunishRoutingModule } from './punish-routing.module';
 import { PunishComponent } from './punish.component';
-import { NavbarModule } from '../shared/component/navbar/navbar.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { NavbarModule } from '../shared/component/navbar/navbar.module';
         CommonModule,
         PunishRoutingModule,
 
-        NavbarModule
+        NavbarModule,
+        PaginationModule.forRoot()
     ],
     declarations: [ PunishComponent ]
 })
