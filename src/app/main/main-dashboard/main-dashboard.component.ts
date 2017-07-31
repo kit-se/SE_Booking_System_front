@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
@@ -37,6 +37,6 @@ export class MainDashboardComponent implements OnInit {
 
     public book() {
         // todo 서버로 예약 전송
-        console.log( this.selectedSection, this.selectedTime );
+        console.log(this.selectedSection, sessionStorage.getItem('id'), this.selectedTime);
     }
 }
