@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h3>예약 취소 현황</h3>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="row">
+                    <p class="col-lg-3">
+                        <a [routerLink]="['/admin/cancel/1']">예약자 학번</a>
+                    </p>
+                    <p class="col-lg-5">02.02 07:00 ~ 02.03 08:00</p>
+                    <p class="col-lg-2">취소자 이름</p>
+                    <p class="col-lg-2">2017-07-17</p>
+                </div>
+                <div class="list-group-separator"></div>
+            </li>
+        </ul>
+    </div>
+    <div class="text-center">
+        <pagination [previousText]="'이전'" [nextText]="'다음'"></pagination>
+    </div>
+</div>
