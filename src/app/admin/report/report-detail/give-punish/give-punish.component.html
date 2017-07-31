@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form [formGroup]="punishFormGroup" (submit)="submit( punishFormGroup )">
+            <div class="form-group">
+                <label class="col-lg-3 control-label">처리자</label>
+                <div class="col-lg-9">
+                    <input type="text" class="form-control" formControlName="admin">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">제제자</label>
+                <div class="col-lg-9">
+                    <input type="text" class="form-control" formControlName="villain">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">제재 기간</label>
+                <div class="col-lg-9">
+                    <select class="form-control" formControlName="period">
+                        <option [value]="date + 1" *ngFor="let none of dateIterator; let date = index">{{ date + 1 }} 일</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-9 col-lg-offset-3">
+                    <button class="btn btn-danger">결정</button>
+                    <button type="button" class="btn btn-default">취소</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
