@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="제목을 입력해 주세요">
+            </div>
+            <div id="summernote">Hello Summernote</div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="preview-wrapper">
+                        <img class="preview" *ngFor="let preview of previewList; let i = index" [src]="preview" (click)="deletePicture( i )">
+                    </div>
+                    <p class="hint" *ngIf="previewList.length !== 0">첨부된 사진은 클릭시 삭제 됩니다.</p>
+                </div>
+            </div>
+            <div class="pull-right">
+                <button class="btn btn-raised btn-primary" (click)="submit()">등록</button>
+                <button class="btn btn-raised btn-danger">취소</button>
+            </div>
+        </div>
+    </div>
+</div>

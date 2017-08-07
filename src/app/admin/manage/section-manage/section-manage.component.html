@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <img id="layout" src="http://via.placeholder.com/445x300">
+                <div class="form-group">
+                    <input type="file" id="layout-input">
+                    <input type="text" class="form-control" placeholder="배치도 첨부하기">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <p class=" pull-left">A1</p>
+                        <p class="pull-right"><i class="material-icons" (click)="deleteSection()">delete</i></p>
+                        <div class="list-group-separator"></div>
+                    </div>
+                    <div class="list-group-item">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="섹션 이름" *ngIf="isAdding">
+                        </div>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-raised btn-info" *ngIf="!isAdding" (click)="isAdding = true">공간 추가</button>
+                    <button type="button" class="btn btn-raised btn-info" *ngIf="isAdding" (click)="addSection()">확인</button>
+                    <button type="button" class="btn btn-raised btn-danger" *ngIf="isAdding" (click)="isAdding = false">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

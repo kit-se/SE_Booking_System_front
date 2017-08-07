@@ -7,6 +7,7 @@ const routes: Routes = [
     { path: 'report', loadChildren: 'app/admin/report/report.module#ReportModule' },
     { path: 'punish', loadChildren: 'app/admin/punish/punish.module#PunishModule' },
     { path: 'manage', loadChildren: 'app/admin/manage/manage.module#ManageModule' },
+    { path: 'cancel', loadChildren: 'app/admin/cancel/cancel.module#CancelModule' }
 ];
 
 @NgModule({

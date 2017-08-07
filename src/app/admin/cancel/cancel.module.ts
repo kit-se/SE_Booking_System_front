@@ -2,20 +2,21 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { PaginationModule } from 'ngx-bootstrap';
 import { NavbarModule } from '../shared/component/navbar/navbar.module';
+import { CancelDetailModule } from './cancel-detail/cancel-detail.module';
 
-import { PunishRoutingModule } from './punish-routing.module';
-import { PunishComponent } from './punish.component';
-
+import { CancelRoutingModule } from './cancel-routing.module';
+import { CancelComponent } from './cancel.component';
 
 @NgModule({
     imports: [
         CommonModule,
-        PunishRoutingModule,
+        CancelRoutingModule,
 
         NavbarModule,
+        CancelDetailModule,
         PaginationModule.forRoot()
     ],
-    declarations: [ PunishComponent ]
+    declarations: [ CancelComponent ]
 })
-export class PunishModule {
+export class CancelModule {
 }
