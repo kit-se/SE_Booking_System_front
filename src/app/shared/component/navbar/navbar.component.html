@@ -3,6 +3,9 @@
         <div class="navbar-header">
             <a class="navbar-brand" [routerLink]="['/main']">330 예약 시스템</a>
         </div>
+        <ul class="nav navbar-nav">
+            <li><a [routerLink]="['/report']" class="navbar-link">신고 하기</a></li>
+        </ul>
         <form class="navbar-form navbar-right" *ngIf="!isLogin" [formGroup]="loginFormGroup"
               (keydown.enter)="login(loginFormGroup)">
             <input type="text" class="form-control" placeholder="아이디" formControlName="id">
