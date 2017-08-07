@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+
 @Component({
     selector: 'app-usage-graph',
     templateUrl: './usage-graph.component.html',
@@ -49,6 +50,8 @@ export class UsageGraphComponent implements OnInit {
                     if ( this.selectedTime.length === 0 ) { // 취소해서 시간이 모두 없어지면 다른 섹션에 예약 할 수 있도록 함.
                         this.selectedSection.emit('');
                     }
+                } else { // 이미 예약된 시간이라면
+                    this.selectedSection.emit('');
                 }
             } else { // 시간 선택
                 this.bookingTable[ index ] = true;
