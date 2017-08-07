@@ -37,6 +37,8 @@ export class MainDashboardComponent implements OnInit {
 
     public book() {
         // todo 서버로 예약 전송
-        console.log(this.selectedSection, sessionStorage.getItem('id'), this.selectedTime);
+        if ( this.selectedSection !== '' ) { // 선택한 섹션이 존재해야지 예약 가능
+            console.log(this.selectedSection, sessionStorage.getItem('id'), this.selectedTime);
+        }
     }
 }
