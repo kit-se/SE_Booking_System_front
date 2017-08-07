@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { PaginationModule } from 'ngx-bootstrap';
 import { NavbarModule } from '../shared/component/navbar/navbar.module';
+import { ReportDetailModule } from './report-detail/report-detail.module';
 
 import { ReportRoutingModule } from './report-routing.module';
 import { ReportComponent } from './report.component';
-import { ReportDetailModule } from './report-detail/report-detail.module';
 
 @NgModule({
     imports: [
@@ -13,7 +14,8 @@ import { ReportDetailModule } from './report-detail/report-detail.module';
 
         ReportDetailModule,
 
-        NavbarModule
+        NavbarModule,
+        PaginationModule.forRoot()
     ],
     declarations: [ ReportComponent ]
 })

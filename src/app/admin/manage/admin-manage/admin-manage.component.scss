@@ -1,0 +1,18 @@
+.list-group {
+    margin: 0;
+
+    .list-group-item {
+        margin: 5px 0;
+    }
+}
+
+.material-icons {
+    cursor: pointer;
+}
+
+.form-group {
+    margin: 10px;
+    &.row {
+        margin: 0 -15px;
+    }
+}
