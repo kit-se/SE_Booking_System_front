@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">사용 오픈소스</div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <h3 class="list-group-title">프론트앤드</h3>
+                <li class="list-group-item head">
+                    <div class="row">
+                        <p class="col-lg-3">오픈소스 이름</p>
+                        <p class="col-lg-5">오픈소스 페이지</p>
+                        <p class="col-lg-1">버전</p>
+                        <p class="col-lg-3">비고</p>
+                    </div>
+                    <div class="list-group-separator"></div>
+                </li>
+                <li class="list-group-item" *ngFor="let item of front">
+                    <div class="row">
+                        <p class="col-lg-3">{{ item.title }}</p>
+                        <p class="col-lg-5">
+                            <a [href]="item.url">{{ item.url }}</a>
+                        </p>
+                        <p class="col-lg-1">{{ item.min_version }}</p>
+                        <p class="col-lg-3">{{ item.remark }}</p>
+                    </div>
+                </li>
+            </ul>
+            <ul class="list-group">
+                <h3 class="list-group-title">백앤드</h3>
+                <li class="list-group-item head">
+                    <div class="row">
+                        <p class="col-lg-3">오픈소스 이름</p>
+                        <p class="col-lg-5">오픈소스 페이지</p>
+                        <p class="col-lg-1">버전</p>
+                        <p class="col-lg-3">비고</p>
+                    </div>
+                    <div class="list-group-separator"></div>
+                </li>
+                <li class="list-group-item" *ngFor="let item of back">
+                    <div class="row">
+                        <p class="col-lg-3">{{ item.title }}</p>
+                        <p class="col-lg-5">
+                            <a [href]="item.url">{{ item.url }}</a>
+                        </p>
+                        <p class="col-lg-1">{{ item.min_version }}</p>
+                        <p class="col-lg-3">{{ item.remark }}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
