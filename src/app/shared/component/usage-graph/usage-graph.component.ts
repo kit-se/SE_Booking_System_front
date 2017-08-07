@@ -36,18 +36,43 @@ export class UsageGraphComponent implements OnInit {
     }
 
     public selectBookingTime (time: number) {
-        let index: number;
-        time > 5 ? index = time - 6 : index = time + 18; // 시간 타일에 해당되는 배열의 index 값을 맞춰줌. 6시 = 0, 0시는 18.
+        let index: number = this.timeToIndex(time);
 
         if ( !this.disabled ) { // 다른 섹션에 예약 중이지 않을때
             if ( !this.bookingTable[index] ) { // 예약
-                this.book(index, time);
+                if ( this.selectedTime.length === 0 ) { // 시작 시간 선택
+                    this.book(index, time);
+                } else { // 종료 시간 선택
+                    let start = this.selectedTime[0];
+                    let end = time;
+                    let startIndex = this.timeToIndex(start);
+                    let endIndex = this.timeToIndex(end);
+
+                    if ( startIndex > endIndex ) { // 시작 시간이 종료 시간보다 클 때 시작시간과 종료시간을 바꿈
+                        let temp = endIndex;
+                        endIndex = startIndex;
+                        startIndex = temp;
+
+                        temp = end;
+                        end = start;
+                        start = temp;
+                    }
+
+                    this.bookingTable.fill(true, startIndex, endIndex + 1); // 선택한 시간 뷰에 표시
+
+                }
             } else { // 취소
                 if ( !this.bookedTimeTable[index] ) { // 다른 사람이 예약 중인 시간이 아니면
                     this.cancel(index, time);
                 }
             }
         }
+    }
+
+    private timeToIndex (time: number): number { // 시간 타일에 해당되는 배열의 index 값을 맞춰줌. 6시 = 0, 0시는 18.
+        let index;
+        time > 5 ? index = time - 6 : index = time + 18;
+        return index;
     }
 
     private book (index: number, time: number) {
