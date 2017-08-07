@@ -3,11 +3,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 declare const $: any;
 
 @Component({
-    selector: 'app-test-wysiwyg',
-    templateUrl: './test-wysiwyg.component.html',
-    styleUrls: [ './test-wysiwyg.component.scss' ]
+    selector: 'app-report',
+    templateUrl: './report.component.html',
+    styleUrls: [ './report.component.scss' ]
 })
-export class TestWysiwygComponent implements OnInit, OnDestroy {
+export class ReportComponent implements OnInit, OnDestroy {
     fileList: File[];
     previewList: any[];
     code: string;
