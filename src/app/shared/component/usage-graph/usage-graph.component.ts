@@ -58,8 +58,12 @@ export class UsageGraphComponent implements OnInit {
                         start = temp;
                     }
 
-                    this.bookingTable.fill(true, startIndex, endIndex + 1); // 선택한 시간 뷰에 표시
-
+                    for ( let i = 1; i <= (endIndex - startIndex); i++ ) {
+                        let time;
+                        start + i > 23 ? time = start + i - 24 : time = start + i;
+                        this.book(startIndex + i, time);
+                    }
+                    console.log(this.selectedTime, this.bookingTable);
                 }
             } else { // 취소
                 if ( !this.bookedTimeTable[index] ) { // 다른 사람이 예약 중인 시간이 아니면
@@ -75,7 +79,7 @@ export class UsageGraphComponent implements OnInit {
         return index;
     }
 
-    private book (index: number, time: number) {
+    private book (index: number = null, time: number) {
         this.bookingTable[index] = true;
         this.selectedTime.push(time);
         this.selectedTimeOutput.emit(this.selectedTime);
