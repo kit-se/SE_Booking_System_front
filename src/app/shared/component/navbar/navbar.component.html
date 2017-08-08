@@ -16,7 +16,7 @@
                 <a [routerLink]="['/admin']" *ngIf="isAdmin">관리자 페이지</a>
             </li>
             <li>
-                <a>{{id}} 님</a>
+                <a [routerLink]="['/mypage']" *ngIf="isLogin">{{id}} 님</a>
             </li>
         </ul>
     </div>
