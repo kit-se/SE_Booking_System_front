@@ -39,38 +39,40 @@ export class UsageGraphComponent implements OnInit {
         let index: number = this.timeToIndex(time);
 
         if ( !this.disabled ) { // 다른 섹션에 예약 중이지 않을때
-            if ( !this.bookingTable[index] ) { // 예약
-                if ( this.selectedTime.length === 0 ) { // 시작 시간 선택
-                    this.book(index, time);
-                } else { // 종료 시간 선택
+            if ( this.selectedTime.length === 0 ) { // 시작 시간 선택
+                this.book(index, time);
+            } else { // 종료 시간 선택
+                if ( this.selectedTime.indexOf(time) === -1 ) { // 사용자가 이전에 선택한 시간이 아닐 경우
+                    // 시작 시간
                     let start = this.selectedTime[0];
-                    let end = time;
                     let startIndex = this.timeToIndex(start);
+
+                    // 종료 시간    // 만약 종료시간을 아직 선택하지 않은 경우에는 시작 시간과 동일.
+                    let end = this.selectedTime[this.selectedTime.length - 1];
                     let endIndex = this.timeToIndex(end);
 
-                    if ( startIndex > endIndex ) { // 시작 시간이 종료 시간보다 클 때 시작시간과 종료시간을 바꿈
-                        let temp = endIndex;
-                        endIndex = startIndex;
-                        startIndex = temp;
+                    // 사용자가 선택한 시간
+                    let timeIndex = this.timeToIndex(time);
 
-                        temp = end;
-                        end = start;
-                        start = temp;
+                    if ( timeIndex < startIndex ) { // 사용자가 선택한 시간이 start 보다 이른 경우
+                        for ( let i = 0; i < (startIndex - timeIndex); i++ ) { // 사용자가 선택한 시간에서 시작 시간까지 예약시간 추가.
+                            this.book(timeIndex + i, this.indexToTime(timeIndex + i));
+                        }
+                    } else if ( endIndex < timeIndex ) { // 사용자가 선택한 시간이 end 보다 늦은 경우
+                        for ( let i = 1; i <= (timeIndex - endIndex); i++ ) {
+                            this.book(endIndex + i, this.indexToTime(endIndex + i));
+                        }
                     }
 
-                    for ( let i = 1; i <= (endIndex - startIndex); i++ ) {
-                        let time;
-                        start + i > 23 ? time = start + i - 24 : time = start + i;
-                        this.book(startIndex + i, time);
-                    }
-                    console.log(this.selectedTime, this.bookingTable);
-                }
-            } else { // 취소
-                if ( !this.bookedTimeTable[index] ) { // 다른 사람이 예약 중인 시간이 아니면
-                    this.cancel(index, time);
+                } else { // 사용자가 선택한 시간을 다시 선택하면 취소.
+                    this.cancel();
                 }
             }
         }
+
+        // 선택된, 취소된 예약 시간을 정리해서 상위 컴포넌트로 보냄
+        this.selectedTime = this.selectedTime.filter((x, index) => this.selectedTime.indexOf(x) === index);
+        this.selectedTimeOutput.emit(this.selectedTime);
     }
 
     private timeToIndex (time: number): number { // 시간 타일에 해당되는 배열의 index 값을 맞춰줌. 6시 = 0, 0시는 18.
@@ -79,18 +81,21 @@ export class UsageGraphComponent implements OnInit {
         return index;
     }
 
-    private book (index: number = null, time: number) {
+    private indexToTime (index: number): number {
+        let time;
+        index > 17 ? time = index - 18 : time = index + 6;
+        return time;
+    }
+
+    private book (index: number, time: number) {
         this.bookingTable[index] = true;
         this.selectedTime.push(time);
-        this.selectedTimeOutput.emit(this.selectedTime);
         this.selectedSection.emit(this.section); // 예약 성공시 섹션 동결
     }
 
-    private cancel (index: number, time: number) {
-        this.bookingTable[index] = false;
-        this.selectedTime.splice(this.selectedTime.indexOf(time), 1); // time 찾아서 삭제.
-        if ( this.selectedTime.length === 0 ) { // 취소해서 시간이 모두 없어지면 다른 섹션에 예약 할 수 있도록 함.
-            this.selectedSection.emit('');
-        }
+    private cancel () {
+        this.bookingTable = this.bookedTimeTable.slice(0);
+        this.selectedTime = [];
+        this.selectedSection.emit('');
     }
 }
