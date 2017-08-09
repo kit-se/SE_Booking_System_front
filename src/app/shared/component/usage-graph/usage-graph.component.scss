@@ -16,10 +16,13 @@
         &.booked {
             background-color: #2196F3;
         }
+        &.selected {
+            background-color: #FFC107;
+        }
         &.disabled {
             opacity: 0.3;
         }
-        &.next-day:not(.booked) {
+        &.next-day:not(.booked):not(.selected) {
             background-color: #E0E0E0;
         }
     }
