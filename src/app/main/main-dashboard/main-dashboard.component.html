@@ -7,8 +7,20 @@
     </div>
     <div class="panel-body">
         <h2>예약 현황 ({{ date }})</h2>
-        <ul class="list-group">
-            <li class="list-group-item" *ngFor="let bookingInfo of bookingInfoList">
+        <ul class="list-group" *ngIf="dateFlag === 'today'">
+            <li class="list-group-item" *ngFor="let bookingInfo of todayBookingInfoList">
+                <app-usage-graph
+                        [section]="bookingInfo.section"
+                        [disabled]="selectedSection !== '' && selectedSection !== bookingInfo.section"
+                        [bookedTimeTable]="bookingInfo.bookedTime"
+                        (selectedSection)="selectedSection = $event"
+                        (selectedTimeOutput)="selectedTime = $event">
+                </app-usage-graph>
+            </li>
+            <button class="btn btn-raised btn-primary pull-right" (click)="book()">예약 하기</button>
+        </ul>
+        <ul class="list-group" *ngIf="dateFlag === 'tomorrow'">
+            <li class="list-group-item" *ngFor="let bookingInfo of tomorrowBookingInfoList">
                 <app-usage-graph
                         [section]="bookingInfo.section"
                         [disabled]="selectedSection !== '' && selectedSection !== bookingInfo.section"

@@ -13,7 +13,8 @@ export class MainDashboardComponent implements OnInit {
     // 섹션 관련 변수
     selectedSection: string;
     // 예약 시간 관련 변수
-    bookingInfoList: any[];
+    todayBookingInfoList: any[];
+    tomorrowBookingInfoList: any[];
     selectedTime: number[];
 
     constructor () {
@@ -25,43 +26,96 @@ export class MainDashboardComponent implements OnInit {
 
         this.selectedSection = '';
 
-        // 서버에서 오늘, 내일에 대한 예약 정보를 모두 불러온다
-        // todo 오늘, 내일에 대한 예약 정보를 분리해서, 해당 날짜 클릭시에 데이터를 바꿔준다.
-        this.bookingInfoList = [
+        // todo 서버에서 데이터 수신
+        this.todayBookingInfoList = [
             {
                 section: 'A1',
-                date: moment().format('YYYY-MM-DD'),
+                date: '2017-08-09',
                 bookedTime: [false, false, false, false, false, false, false, false, false, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false]
             },
             {
                 section: 'A2',
-                date: moment().format('YYYY-MM-DD'),
+                date: '2017-08-09',
                 bookedTime: [false, false, false, false, false, false, false, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false]
             },
             {
                 section: 'A3',
-                date: moment().format('YYYY-MM-DD'),
+                date: '2017-08-09',
                 bookedTime: [false, false, true, true, true, true, false, false, false, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false]
             },
             {
                 section: 'B1',
-                date: moment().format('YYYY-MM-DD'),
+                date: '2017-08-09',
                 bookedTime: [false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, false, false, false, false, false, false, false]
             },
             {
                 section: 'B2',
-                date: moment().format('YYYY-MM-DD'),
+                date: '2017-08-09',
                 bookedTime: [false, false, false, false, false, false, false, false, false, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false]
             }
-        ]
+        ];
     }
 
     public switchDate (date: string) {
         this.dateFlag = date;
         if ( this.dateFlag === 'today' ) {
             this.date = moment().format('YY. MM. DD');
+            this.todayBookingInfoList = [
+                {
+                    section: 'A1',
+                    date: '2017-08-09',
+                    bookedTime: [false, false, false, false, false, false, false, false, false, true, true, true, true, false, false, true, true, true, true, false, false, false, false, false]
+                },
+                {
+                    section: 'A2',
+                    date: '2017-08-09',
+                    bookedTime: [false, false, false, false, false, false, false, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                },
+                {
+                    section: 'A3',
+                    date: '2017-08-09',
+                    bookedTime: [false, false, true, true, true, true, false, false, false, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false]
+                },
+                {
+                    section: 'B1',
+                    date: '2017-08-09',
+                    bookedTime: [false, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, false, false, false, false, false, false, false]
+                },
+                {
+                    section: 'B2',
+                    date: '2017-08-09',
+                    bookedTime: [false, false, false, false, false, false, false, false, false, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false]
+                }
+            ];
         } else if ( this.dateFlag === 'tomorrow' ) {
             this.date = moment().add(1, 'days').format('YY. MM. DD');
+            this.tomorrowBookingInfoList = [
+                {
+                    section: 'A1',
+                    date: '2017-08-10',
+                    bookedTime: [false, false, false, false, false, false, false, false, false, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false]
+                },
+                {
+                    section: 'A2',
+                    date: '2017-08-10',
+                    bookedTime: [false, false, false, false, false, false, false, false, false, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false]
+                },
+                {
+                    section: 'A3',
+                    date: '2017-08-10',
+                    bookedTime: [false, false, false, false, false, false, false, false, false, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false]
+                },
+                {
+                    section: 'B1',
+                    date: '2017-08-10',
+                    bookedTime: [false, false, false, false, false, false, false, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false]
+                },
+                {
+                    section: 'B2',
+                    date: '2017-08-10',
+                    bookedTime: [false, false, true, true, true, true, false, false, false, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false]
+                }
+            ];
         }
     }
 
