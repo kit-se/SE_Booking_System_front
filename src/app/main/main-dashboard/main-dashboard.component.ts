@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { Observable } from 'rxjs/Observable';
+import { SectionService } from '../../shared/http/section.service';
 
 @Component({
     selector: 'app-main-dashboard',
@@ -10,19 +12,18 @@ export class MainDashboardComponent implements OnInit {
     dateFlag: string;
     date: string;
 
-    sectionList: string[];
+    sectionList$: Observable<any>;
     selectedSection: string;
 
     selectedTime: number[];
 
-    constructor () {
+    constructor (private sectionService: SectionService) {
     }
 
     ngOnInit () {
         this.dateFlag = 'today';
         this.date = moment().format('YY. MM. DD');
-
-        this.sectionList = ['A1', 'A2', 'A3', 'B1', 'B2'];
+        this.sectionList$ = this.sectionService.getSectionList();
         this.selectedSection = '';
     }
 
