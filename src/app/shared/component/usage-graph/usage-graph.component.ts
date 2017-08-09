@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import 'rxjs/add/operator/do';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
     selector: 'app-usage-graph',
@@ -11,6 +13,8 @@ export class UsageGraphComponent implements OnInit {
     @Output() selectedTimeOutput = new EventEmitter<number[]>(); // 예약 버튼 클릭시 현재까지 선택된 시간 배열을 부모 컴포넌트에 알림
     @Input() disabled: boolean; // 다른 섹션 예약 중일 때 예약 방지 목적
     @Input() section: string;
+    @Input() bookingInfoList$: Observable<any>;
+
     timeTable: number[] = [];
     bookingTable: boolean[] = []; // 전체 예약 테이블
     bookedTimeTable: boolean[] = []; // 예약된 시간 테이블
@@ -25,14 +29,18 @@ export class UsageGraphComponent implements OnInit {
         this.bookingTable = new Array(24);
         this.bookingTable.fill(false);
 
-        // todo 서버에서 예약된 데이터를 불러오기
-        if ( this.section === 'A1' ) {
-            this.bookedTimeTable = [false, false, false, false, false, false, false, false, false, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false];
-            this.bookingTable = this.bookedTimeTable.slice(0); // 일반 복사를 수행하면 참조값이 넘어가기 때문에 깊은 복사를 수행한다.
-        } else if ( this.section === 'B1' ) {
-            this.bookedTimeTable = [false, false, false, false, false, false, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
-            this.bookingTable = this.bookedTimeTable.slice(0);
-        }
+        this.bookingInfoList$
+            .map(list => list.filter(item => item.section === this.section)) // 현재 위치한 섹션에 대한 정보만 가져옴
+            .subscribe(list => {
+                for ( let i = 0; i < list.length; i++ ) {
+                    let timeList = list[i].booking_time.split(', '); // '12, 13, 14' => ['12', '13', '14']
+                    for ( let j = 0; j < timeList.length; j++ ) {
+                        let index = this.timeToIndex(+timeList[j]); // '12' -> 12 -> 6
+                        this.bookedTimeTable[index] = true;
+                        this.bookingTable = this.bookedTimeTable.slice(0); // 예약된 곳에 색칠
+                    }
+                }
+            });
     }
 
     public selectBookingTime (time: number) {
@@ -74,25 +82,21 @@ export class UsageGraphComponent implements OnInit {
         this.selectedTime = this.selectedTime.filter((x, index) => this.selectedTime.indexOf(x) === index);
         this.selectedTimeOutput.emit(this.selectedTime);
     }
-
     private timeToIndex (time: number): number { // 시간 타일에 해당되는 배열의 index 값을 맞춰줌. 6시 = 0, 0시는 18.
         let index;
         time > 5 ? index = time - 6 : index = time + 18;
         return index;
     }
-
     private indexToTime (index: number): number {
         let time;
         index > 17 ? time = index - 18 : time = index + 6;
         return time;
     }
-
     private book (index: number, time: number) {
         this.bookingTable[index] = true;
         this.selectedTime.push(time);
         this.selectedSection.emit(this.section); // 예약 성공시 섹션 동결
     }
-
     private cancel () {
         this.bookingTable = this.bookedTimeTable.slice(0);
         this.selectedTime = [];
