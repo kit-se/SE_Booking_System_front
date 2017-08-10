@@ -57,6 +57,8 @@ export class NavbarComponent implements OnInit {
                 alert('비밀번호를 입력해 주세요');
             }
         }
+
+        this.loginFormGroup.reset();
     }
 
     public logout () {

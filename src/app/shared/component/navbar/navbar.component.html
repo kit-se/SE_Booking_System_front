@@ -10,7 +10,7 @@
               (keydown.enter)="login(loginFormGroup)">
             <input type="text" class="form-control" placeholder="아이디" formControlName="id">
             <input type="password" class="form-control" placeholder="비밀번호" formControlName="password">
-            <button class="btn btn-default" (click)="login(loginFormGroup)">로그인</button>
+            <button type="button" class="btn btn-default" (click)="login(loginFormGroup)">로그인</button>
         </form>
         <ul class="nav navbar-nav navbar-right" *ngIf="isLogin">
             <li>
