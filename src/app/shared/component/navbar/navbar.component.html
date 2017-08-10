@@ -10,13 +10,17 @@
               (keydown.enter)="login(loginFormGroup)">
             <input type="text" class="form-control" placeholder="아이디" formControlName="id">
             <input type="password" class="form-control" placeholder="비밀번호" formControlName="password">
+            <button class="btn btn-default" (click)="login(loginFormGroup)">로그인</button>
         </form>
         <ul class="nav navbar-nav navbar-right" *ngIf="isLogin">
             <li>
                 <a [routerLink]="['/admin']" *ngIf="isAdmin">관리자 페이지</a>
             </li>
             <li>
-                <a [routerLink]="['/mypage']" *ngIf="isLogin">{{id}} 님</a>
+                <a [routerLink]="['/mypage']">{{id}} 님</a>
+            </li>
+            <li>
+                <a (click)="logout()">로그아웃</a>
             </li>
         </ul>
     </div>
