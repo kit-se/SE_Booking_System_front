@@ -12,17 +12,19 @@
                 <div [ngSwitch]="dateFlag">
                     <app-usage-graph
                             *ngSwitchCase="'today'"
-                            [section]="section.name"
-                            [disabled]="selectedSection !== '' && selectedSection !== section.name"
+                            [section]="section"
+                            [disabled]="selectedSection !== '' && selectedSection !== section.id"
                             [bookingInfoList$]="todayBookingInfoList$"
+                            [needUpdate]="needUpdate"
                             (selectedSection)="selectedSection = $event"
                             (selectedTimeOutput)="selectedTime = $event">
                     </app-usage-graph>
                     <app-usage-graph
                             *ngSwitchCase="'tomorrow'"
-                            [section]="section.name"
-                            [disabled]="selectedSection !== '' && selectedSection !== section.name"
+                            [section]="section"
+                            [disabled]="selectedSection !== '' && selectedSection !== section.id"
                             [bookingInfoList$]="tomorrowBookingInfoList$"
+                            [needUpdate]="needUpdate"
                             (selectedSection)="selectedSection = $event"
                             (selectedTimeOutput)="selectedTime = $event">
                     </app-usage-graph>
