@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../http/login.service';
 
@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
     isAdmin: boolean;
     id: string;
 
-    constructor (private loginService: LoginService, private fb: FormBuilder) {
+    constructor (private loginService: LoginService, private fb: FormBuilder, private changeDetector: ChangeDetectorRef) {
     }
 
     ngOnInit () {
@@ -36,6 +36,7 @@ export class NavbarComponent implements OnInit {
                         alert(`안녕하세요! ${value.id}님`);
                         sessionStorage.setItem('id', value.id);
                         this.checkUserInfo();
+                        this.changeDetector.detectChanges();
                     } else {
                         alert(`아이디 혹은 비밀번호가 틀렸습니다.`);
                     }
