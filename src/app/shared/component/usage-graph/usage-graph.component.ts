@@ -15,10 +15,10 @@ export class UsageGraphComponent implements OnInit, AfterContentChecked {
     @Input() section: any;
     @Input() bookingInfoList$: Observable<any>;
     @Input() needUpdate: boolean = false;
-    bookedTimeTable: boolean[] = [];
-    timeTable: number[] = [];
-    bookingTable: boolean[] = []; // 전체 예약 테이블
-    selectedTime: number[] = [];
+    bookedTimeTable: boolean[];
+    timeTable: number[];
+    bookingTable: boolean[]; // 전체 예약 테이블
+    selectedTime: number[];
 
     constructor (private router: Router) {
     }
@@ -30,6 +30,7 @@ export class UsageGraphComponent implements OnInit, AfterContentChecked {
         this.bookingTable.fill(false);
         this.bookedTimeTable = new Array(24);
         this.bookedTimeTable.fill(false);
+        this.selectedTime = [];
 
         // 예약 현황
         this.loadBookedData();
@@ -37,6 +38,11 @@ export class UsageGraphComponent implements OnInit, AfterContentChecked {
 
     ngAfterContentChecked () {
         if ( this.needUpdate ) {
+            this.bookingTable = new Array(24);
+            this.bookingTable.fill(false);
+            this.bookedTimeTable = new Array(24);
+            this.bookedTimeTable.fill(false);
+            this.selectedTime = [];
             this.loadBookedData();
             this.needUpdate = false;
         }
@@ -87,21 +93,25 @@ export class UsageGraphComponent implements OnInit, AfterContentChecked {
         this.selectedTime = this.selectedTime.filter((x, index) => this.selectedTime.indexOf(x) === index);
         this.selectedTimeOutput.emit(this.selectedTime);
     }
+
     private timeToIndex (time: number): number { // 시간 타일에 해당되는 배열의 index 값을 맞춰줌. 6시 = 0, 0시는 18.
         let index;
         time > 5 ? index = time - 6 : index = time + 18;
         return index;
     }
+
     private indexToTime (index: number): number {
         let time;
         index > 17 ? time = index - 18 : time = index + 6;
         return time;
     }
+
     private book (index: number, time: number) {
         this.bookingTable[index] = true;
         this.selectedTime.push(time);
         this.selectedSection.emit(this.section.id); // 예약 성공시 섹션 동결
     }
+
     private cancel () {
         this.bookingTable = this.bookedTimeTable.slice(0);
         this.selectedTime = [];

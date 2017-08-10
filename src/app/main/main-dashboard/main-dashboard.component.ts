@@ -48,6 +48,7 @@ export class MainDashboardComponent implements OnInit {
     }
 
     public book() {
+        this.needUpdate = false;
         if ( this.selectedSection !== '' ) { // 선택한 섹션이 존재해야지 예약 가능
             if ( sessionStorage.getItem('id') === null ) {
                 alert('로그인 후 예약이 가능합니다.');
