@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../http/login.service';
 
@@ -13,11 +13,14 @@ export class NavbarComponent implements OnInit {
     isAdmin: boolean;
     id: string;
 
-    constructor (private loginService: LoginService, private fb: FormBuilder, private changeDetector: ChangeDetectorRef) {
+    constructor (private loginService: LoginService, private fb: FormBuilder) {
     }
 
     ngOnInit () {
-        this.checkUserInfo();
+        sessionStorage.getItem('id') === null ? this.isLogin = false : this.isLogin = true;
+        if ( this.isLogin ) {
+            this.id = sessionStorage.getItem('id');
+        }
         this.loginFormGroup = this.fb.group({
             id: [ '', Validators.required ],
             password: [ '', Validators.required ]
@@ -35,8 +38,10 @@ export class NavbarComponent implements OnInit {
                     if ( res.result === 'login success' ) {
                         alert(`안녕하세요! ${value.id}님`);
                         sessionStorage.setItem('id', value.id);
-                        this.checkUserInfo();
-                        this.changeDetector.detectChanges();
+                        sessionStorage.setItem('isAdmin', res.isAdmin);
+                        this.isAdmin = res.isAdmin;
+                        this.isLogin = true;
+                        this.id = value.id;
                     } else {
                         alert(`아이디 혹은 비밀번호가 틀렸습니다.`);
                     }
@@ -52,12 +57,5 @@ export class NavbarComponent implements OnInit {
                 alert('비밀번호를 입력해 주세요');
             }
         }
-    }
-
-    public checkUserInfo() {
-        this.id = sessionStorage.getItem('id');
-        this.id ? this.isLogin = true : this.isLogin = false;
-        // todo: server know this id is admin.
-        this.id === '20120350' ? this.isAdmin = true : this.isAdmin = false;
     }
 }
