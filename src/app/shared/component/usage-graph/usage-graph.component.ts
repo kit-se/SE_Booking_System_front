@@ -38,6 +38,7 @@ export class UsageGraphComponent implements OnInit, AfterContentChecked {
     ngAfterContentChecked () {
         if ( this.needUpdate ) {
             this.loadBookedData();
+            this.needUpdate = false;
         }
     }
 
