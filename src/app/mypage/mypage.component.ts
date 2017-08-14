@@ -1,4 +1,5 @@
-import { BOOL_TYPE } from '@angular/compiler/src/output/output_ast';
+import { Observable } from 'rxjs/Rx';
+import { BookingService } from '../shared/http/booking.service';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 
@@ -10,11 +11,16 @@ import * as moment from 'moment';
 })
 
 export class MypageComponent implements OnInit {
-  isBefore:boolean = moment('2017-08-01').isBefore('2017-08-02');
+  isBefore:boolean;
+  bookingList:Observable<any>;
+  id:string;
 
-  constructor() { }
+  constructor(private bookingService: BookingService) { }
 
   ngOnInit() {
+    this.isBefore = moment().isBefore('2017-08-02');
+    this.id = sessionStorage.getItem('id');
+    this.bookingList = this.bookingService.getBookingInfoListByUser(this.id);
   }
 
 }

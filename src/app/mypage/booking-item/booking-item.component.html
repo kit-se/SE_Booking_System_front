@@ -1,0 +1,9 @@
+<li class="list-group-item" *ngFor="let bookingItem of bookingList | async">
+  <div class="row">
+    <p class="col-lg-5">{{ bookingItem.booking_date }}</p>
+    <p class="col-lg-5">{{ bookingItem.booking_time }}</p>
+    <p class="col-lg-2">
+      <i class="material-icons">cancel</i>
+    </p>
+  </div>
+</li>

@@ -22,14 +22,14 @@ export class BookingService {
     }
 
     // 마이페이지용 예약 현황
-    public getBookingInfoByUserId (id: string): Observable<any> {
-        return this.http.get(this.global.url + `/mypage?id=${id}`).map((res: any) => {
-            if ( res.status === 'success' ) {
+    public getBookingInfoListByUser (id: string): Observable<any> {
+        return this.http.get(this.global.url + `/mypage?id=${id}`).map((res:any) => {
+            if ( res.status === 'success') {
                 return res.result;
             } else {
-                alert('[ERROR]: ' + res.result);
+                alert( '[ERROR]: ' + res.result );
             }
-        })
+        });
     }
 
     // 예약

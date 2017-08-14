@@ -1,3 +1,4 @@
+import { BookingItemModule } from './booking-item/booking-item.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -9,7 +10,8 @@ import { NavbarModule } from "app/shared/component/navbar/navbar.module";
   imports: [
     CommonModule,
     MypageRoutingModule,
-    NavbarModule
+    NavbarModule,
+    BookingItemModule
   ],
   declarations: [MypageComponent]
 })

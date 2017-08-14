@@ -4,27 +4,23 @@
     <div class="panel-body">
       <h3>마이페이지</h3><br/>
       <ul class="list-group">
-       <li class="list-group-item">
-         <div class="row">
-            <p class="col-lg-5">예약날짜</p>
-            <p class="col-lg-5">예약시간</p>
+        <li class="list-group-item">
+          <div class="row">
+            <p class="col-lg-4">예약날짜</p>
+            <p class="col-lg-3">예약구역</p>
+            <p class="col-lg-3">예약시간</p>
 
             <p class="col-lg-2" *ngIf="isBefore">예약취소</p>
             <p class="col-lg-2" *ngIf="!isBefore">사용종료</p>
-            
-         </div>
-          <div class="list-group-separator"></div> 
-       </li>
-        <li class="list-group-item">
-         <div class="row">
-            <p class="col-lg-5">2017년 8월 1일</p> 
-            <p class="col-lg-5">18:00 ~ 23:00</p>
-             <p class="col-lg-2">
-                 <i class="material-icons">cancel</i>
-             </p>
-         </div>
-       </li>
+
+          </div>
+          <div class="list-group-separator"></div>
+        </li>
+        <li class="list-group-item" *ngFor="let bookingItem of bookingList | async">
+          <app-booking-item></app-booking-item>
+        </li>
       </ul>
     </div>
   </div>
 </div>
+
