@@ -42,4 +42,13 @@ export class BookingService {
             }
         });
     }
+
+    //예약취소
+    public cancel(bookingId:number, cancelerId:string){
+        let body={
+            booking_id:bookingId,
+            changer_id:cancelerId
+        };
+        return this.http.put(this.global.url + '/cancle-book', body);
+    }
 }

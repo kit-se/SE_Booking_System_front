@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { BookingService } from '../../shared/http/booking.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
@@ -8,12 +9,14 @@ import * as moment from 'moment';
 })
 export class BookingItemComponent implements OnInit {
   @Input() bookingItem:any;
+  @Output() needUpdateOutput = new EventEmitter<boolean>();
+  @Input() needUpdate:boolean;
   timing:string;
   timeArray: number[];
   start: string;
   end: string;
 
-  constructor() { }
+  constructor(private bookingService:BookingService) { }
 
   ngOnInit() {
     this.timeArray = [];
@@ -28,5 +31,16 @@ export class BookingItemComponent implements OnInit {
     } else{
       this.timing = 'now';
     }
+  }
+
+  cancel(bookingId:number){
+    this.bookingService.cancel(bookingId, sessionStorage.getItem('id')).subscribe((res: any) => {
+      if(res.status === 'success'){
+        this.needUpdate = true;
+        this.needUpdateOutput.emit(this.needUpdate);
+      } else{
+        alert('[ERROR]: ' + res.result);
+      }
+    });
   }
 }

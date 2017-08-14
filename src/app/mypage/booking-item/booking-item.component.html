@@ -3,7 +3,7 @@
   <p class="col-lg-3">{{ bookingItem.section }}</p>
   <p class="col-lg-3">{{ bookingItem.booking_time }}</p>
   <p class="col-lg-2" *ngIf="timing === 'before'">
-    <button class="btn btn-raised">예약취소</button>
+    <button class="btn btn-raised" (click)="cancel(bookingItem.id)">예약취소</button>
   </p>
   <p class="col-lg-2" *ngIf="timing === 'now'">
     <button class="btn btn-raised">사용종료</button>

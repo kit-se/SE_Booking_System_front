@@ -12,13 +12,18 @@ import { Component, OnInit } from '@angular/core';
 export class MypageComponent implements OnInit {
   bookingList:Observable<any>;
   id:string;
-
+  needUpdate:boolean;
   constructor(private bookingService: BookingService) { }
 
   ngOnInit() {
     this.id = sessionStorage.getItem('id');
     this.bookingList = this.bookingService.getBookingInfoListByUser(this.id);
+    this.needUpdate = false;
   }
 
+  update(needUpdate:boolean){
+    if(needUpdate){
+      this.bookingList = this.bookingService.getBookingInfoListByUser(this.id);
+    }
+  }
 }
-

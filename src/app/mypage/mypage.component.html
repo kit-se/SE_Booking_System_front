@@ -13,7 +13,7 @@
           <div class="list-group-separator"></div>
         </li>
         <li class="list-group-item" *ngFor="let bookingItem of bookingList | async">
-          <app-booking-item [bookingItem]="bookingItem"></app-booking-item>
+          <app-booking-item [bookingItem]="bookingItem" [needUpdate]="needUpdate" (needUpdateOutput)="update( $event )"></app-booking-item>
         </li>
       </ul>
     </div>
