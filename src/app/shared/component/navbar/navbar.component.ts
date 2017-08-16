@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from '../../http/login.service';
 import { Router } from '@angular/router';
+import { LoginService } from '../../http/login.service';
 
 @Component({
     selector: 'app-navbar',
@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
 
     ngOnInit () {
         sessionStorage.getItem('id') === null ? this.isLogin = false : this.isLogin = true;
+        sessionStorage.getItem('isAdmin') === null ? this.isAdmin = false : this.isAdmin = sessionStorage.getItem('isAdmin') === 'true';
         if ( this.isLogin ) {
             this.id = sessionStorage.getItem('id');
         }
