@@ -1,6 +1,7 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../../http/login.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-navbar',
@@ -13,7 +14,7 @@ export class NavbarComponent implements OnInit {
     isAdmin: boolean;
     id: string;
 
-    constructor (private loginService: LoginService, private fb: FormBuilder, private changeDetector: ChangeDetectorRef) {
+    constructor (private loginService: LoginService, private fb: FormBuilder, private router: Router) {
     }
 
     ngOnInit () {
@@ -65,6 +66,6 @@ export class NavbarComponent implements OnInit {
         sessionStorage.clear();
         this.isLogin = false;
         this.isAdmin = false;
-        this.changeDetector.detectChanges();
+        this.router.navigate(['/main']);
     }
 }
