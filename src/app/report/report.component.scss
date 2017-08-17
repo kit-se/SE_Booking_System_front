@@ -12,11 +12,18 @@
         padding: 0 20px;
         max-width: 100px;
         max-height: 100px;
+        cursor: pointer;
     }
 }
 
 .form-group {
     margin: 0;
+    select.plaseholder {
+        color: #BDBDBD;
+        option:not(.plaseholder) {
+            color: #000000;
+        }
+    }
 }
 
 .hint {
