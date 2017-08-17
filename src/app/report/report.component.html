@@ -1,25 +1,46 @@
 <app-navbar></app-navbar>
 
 <div class="container">
+    <div class="alert alert-dismissible alert-warning">
+        <h4>잠깐만요!</h4>
+        <p>또한, 부정확한 신고 정보를 입력할 시 다른 학우에게 피해가 갈 수 있습니다. 신중히 사용해주세요.</p>
+    </div>
+
     <div class="panel panel-primary">
         <div class="panel-heading">신고 하기</div>
         <div class="panel-body">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="제목을 입력해 주세요">
-            </div>
-            <div id="summernote">Hello Summernote</div>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="preview-wrapper">
-                        <img class="preview" *ngFor="let preview of previewList; let i = index" [src]="preview" (click)="deletePicture( i )">
+            <form [formGroup]="reportForm" (submit)="submit()" ngNativeValidate>
+                <div class="row">
+                    <div class="form-group col-lg-12">
+                        <input type="text" class="form-control" placeholder="제목을 입력해 주세요" formControlName="title"
+                               required>
                     </div>
-                    <p class="hint" *ngIf="previewList.length !== 0">첨부된 사진은 클릭시 삭제 됩니다.</p>
+                    <div class="form-group col-lg-4">
+                        <select class="form-control" [ngClass]="{plaseholder: reportForm.value.time === ''}"
+                                formControlName="time" required>
+                            <option class="plaseholder" value="">신고 시간</option>
+                            <option [value]="bookingItem.id" *ngFor="let bookingItem of bookingList | async">{{
+                                bookingItem.booking_date }} {{ bookingItem.booking_time }}:00 / {{ bookingItem.section
+                                }}
+                            </option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="pull-right">
-                <button class="btn btn-raised btn-primary" (click)="submit()">등록</button>
-                <button class="btn btn-raised btn-danger">취소</button>
-            </div>
+                <div id="summernote">Hello Summernote</div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="preview-wrapper">
+                            <img class="preview" *ngFor="let preview of previewList; let i = index" [src]="preview"
+                                 (click)="deletePicture( i )">
+                        </div>
+                        <p class="hint" *ngIf="previewList.length !== 0">첨부된 사진은 클릭시 삭제 됩니다.</p>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-raised btn-primary">등록</button>
+                    <button class="btn btn-raised btn-danger" [routerLink]="['/main']">취소</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
