@@ -47,6 +47,17 @@ export class BookingItemComponent implements OnInit {
         });
     }
 
+    public endBooking(bookingId:number, endTime:string){
+        this.bookingService.end(bookingId, sessionStorage.getItem('id'),endTime).subscribe((res:any) => {
+            if ( res.status === 'success' ) {
+                this.needUpdate = true;
+                this.needUpdateOutput.emit(this.needUpdate);
+            } else {
+                alert('[ERROR]: ' + res.result);
+            }
+        });
+    }
+
     private isTomorrow (start: number): boolean {
         if ( start < 6 ) {
             return true;
