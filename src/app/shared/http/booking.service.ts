@@ -51,4 +51,14 @@ export class BookingService {
         };
         return this.http.put(this.global.url + '/cancle-book', body);
     }
+
+    //사용종료
+    public end(bookingId:number, endId:string, endTime:string){
+        let body={
+            booking_id:bookingId,
+            changer_id:endId,
+            change_time:endTime
+        };
+        return this.http.put(this.global.url + '/end-book', body);
+    }
 }
