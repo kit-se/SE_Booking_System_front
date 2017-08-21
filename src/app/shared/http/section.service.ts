@@ -20,6 +20,29 @@ export class SectionService {
         });
     }
 
+    public postSection (data: any): Observable<any> {
+        return this.http.post(this.global.url + `/post-section`, data).map((res: any) => {
+            if ( res.status === 'success' ) {
+                return res.result;
+            } else {
+                alert('[ERROR]: ' + res.result);
+            }
+        });
+    }
+
+    public deleteSection (id: number): Observable<any> {
+        let data = {
+            id: id
+        };
+        return this.http.put(this.global.url + `/delete-section`, data).map((res: any) => {
+            if ( res.status === 'success' ) {
+                return res.result;
+            } else {
+                alert('[ERROR]: ' + res.result);
+            }
+        });
+    }
+
     public postLayout (data: FormData): Observable<any> {
         return this.http.post(this.global.url + `/layout`, data).map((res: any) => {
             if ( res.status === 'success' ) {

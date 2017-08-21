@@ -17,9 +17,10 @@
             </div>
             <div class="col-lg-6">
                 <div class="list-group">
-                    <div class="list-group-item">
-                        <p class=" pull-left">A1</p>
-                        <p class="pull-right"><i class="material-icons" (click)="deleteSection()">delete</i></p>
+                    <div class="list-group-item" *ngFor="let section of sectionList$ | async">
+                        <p class=" pull-left">{{ section.name }}</p>
+                        <p class="pull-right"><i class="material-icons" (click)="deleteSection( section.id )">delete</i>
+                        </p>
                         <div class="list-group-separator"></div>
                     </div>
                     <div class="list-group-item">
