@@ -28,4 +28,17 @@ export class AdminService {
             }
         });
     }
+
+    public deleteAdmin (id: number): Observable<any> {
+        let data = {
+            id: id
+        };
+        return this.http.put(this.global.url + `/delete-admin`, data).map((res: any) => {
+            if ( res.status === 'success' ) {
+                return res.result
+            } else {
+                alert('[ERROR]: ' + res.err);
+            }
+        });
+    }
 }

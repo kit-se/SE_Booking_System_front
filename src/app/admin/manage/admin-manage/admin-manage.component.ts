@@ -26,15 +26,16 @@ export class AdminManageComponent implements OnInit {
         this.adminList$ = this.adminService.getAdminList();
     }
 
-    public addAdmin (data) {
+    public addAdmin (data: any) {
         this.adminService.postAdmin(data).subscribe(() => {
             this.adminList$ = this.adminService.getAdminList();
         });
         this.isAdding = false;
     }
 
-    public deleteAdmin() {
-        // todo 삭제할 admin id 받아 와야함.
-        // todo 서버로 삭제 보냄
+    public deleteAdmin (id: number) {
+        this.adminService.deleteAdmin(id).subscribe(() => {
+            this.adminList$ = this.adminService.getAdminList();
+        })
     }
 }
