@@ -35,6 +35,7 @@ export class SectionManageComponent implements OnInit {
         const data = new FormData();
         data.append('layout_file', this.layoutFile);
         this.sectionService.postLayout(data).subscribe(result => {
+            this.layoutUrl$ = this.sectionService.getLayout().map(result => result.url);
         });
     }
 }
