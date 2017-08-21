@@ -2,10 +2,17 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-lg-6">
-                <img id="layout" src="http://via.placeholder.com/445x300">
-                <div class="form-group">
-                    <input type="file" id="layout-input">
-                    <input type="text" class="form-control" placeholder="배치도 첨부하기">
+                <img id="layout" *ngIf="layoutUrl$ | async as layout" [src]="layout">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="form-group">
+                            <input type="file" (change)="this.layoutFile = $event.target.files[0]">
+                            <input type="text" readonly="" class="form-control" placeholder="배치도 첨부">
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <button class="btn btn-raised btn-primary" (click)="postLayout()">첨부하기</button>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -22,8 +29,12 @@
                     </div>
                 </div>
                 <div class="pull-right">
-                    <button type="button" class="btn btn-raised btn-info" *ngIf="!isAdding" (click)="isAdding = true">공간 추가</button>
-                    <button type="button" class="btn btn-raised btn-info" *ngIf="isAdding" (click)="addSection()">확인</button>
+                    <button type="button" class="btn btn-raised btn-primary" *ngIf="!isAdding"
+                            (click)="isAdding = true">공간 추가
+                    </button>
+                    <button type="button" class="btn btn-raised btn-primary" *ngIf="isAdding" (click)="addSection()">
+                        확인
+                    </button>
                     <button type="button" class="btn btn-raised btn-danger" *ngIf="isAdding" (click)="isAdding = false">취소</button>
                 </div>
             </div>

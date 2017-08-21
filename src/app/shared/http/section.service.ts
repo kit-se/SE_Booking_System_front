@@ -19,4 +19,24 @@ export class SectionService {
             }
         });
     }
+
+    public postLayout (data: FormData): Observable<any> {
+        return this.http.post(this.global.url + `/layout`, data).map((res: any) => {
+            if ( res.status === 'success' ) {
+                return res.result;
+            } else {
+                alert('[ERROR]: ' + res.result);
+            }
+        });
+    }
+
+    public getLayout (): Observable<any> {
+        return this.http.get(this.global.url + `/layout`).map((res: any) => {
+            if ( res.status === 'success' ) {
+                return res.result;
+            } else {
+                alert('[ERROR]: ' + res.result);
+            }
+        });
+    }
 }

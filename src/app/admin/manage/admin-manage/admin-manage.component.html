@@ -33,8 +33,10 @@
             </div>
         </div>
         <div class="pull-right">
-            <button type="button" class="btn btn-raised btn-info" *ngIf="!isAdding" (click)="isAdding = true">관리자 추가</button>
-            <button type="button" class="btn btn-raised btn-info" *ngIf="isAdding" (click)="addAdmin()">확인</button>
+            <button type="button" class="btn btn-raised btn-primary" *ngIf="!isAdding" (click)="isAdding = true">관리자
+                추가
+            </button>
+            <button type="button" class="btn btn-raised btn-primary" *ngIf="isAdding" (click)="addAdmin()">확인</button>
             <button type="button" class="btn btn-raised btn-danger" *ngIf="isAdding" (click)="isAdding = false">취소</button>
         </div>
     </div>
