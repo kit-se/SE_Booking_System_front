@@ -59,7 +59,8 @@ export class DevComponent implements OnInit {
                 min_version: '4.2.1',
                 remark: ''
             },
-            { title: 'rxjs', url: 'https://github.com/ReactiveX/rxjs', min_version: '5.4.2', remark: '' }
+            { title: 'rxjs', url: 'https://github.com/ReactiveX/rxjs', min_version: '5.4.2', remark: '' },
+            { title: 'multiparty', url: 'https://github.com/pillarjs/multiparty', min_version: '4.1.3', remark: '' }
         ];
     }
 }
