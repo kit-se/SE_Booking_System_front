@@ -1,33 +1,33 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="list-group">
-            <div class="manager list-group-item">
+            <div class="manager list-group-item" *ngFor="let admin of adminList$ | async">
                 <div class="row">
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                        <p>20120350</p>
+                        <p>{{ admin.credit }}</p>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                        <p>김종현</p>
+                        <p>{{ admin.name }}</p>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                        <p>학생회</p>
+                        <p>{{ admin.position }}</p>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                        <p class="pull-right"><i class="material-icons" (click)="deleteAdmin()">delete</i></p>
+                        <p class="pull-right"><i class="material-icons" (click)="deleteAdmin( admin.id )">delete</i></p>
                     </div>
                 </div>
                 <div class="list-group-separator"></div>
             </div>
             <div class="manager list-group-item" *ngIf="isAdding">
-                <div class="form-group row">
+                <div class="form-group row" [formGroup]="adminForm">
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                        <input type="text" class="form-control" placeholder="학번">
+                        <input type="text" class="form-control" placeholder="학번" formControlName="credit">
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                        <input type="text" class="form-control" placeholder="이름">
+                        <input type="text" class="form-control" placeholder="이름" formControlName="name">
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                        <input type="text" class="form-control" placeholder="직책">
+                        <input type="text" class="form-control" placeholder="직책" formControlName="position">
                     </div>
                 </div>
             </div>
@@ -36,7 +36,9 @@
             <button type="button" class="btn btn-raised btn-primary" *ngIf="!isAdding" (click)="isAdding = true">관리자
                 추가
             </button>
-            <button type="button" class="btn btn-raised btn-primary" *ngIf="isAdding" (click)="addAdmin()">확인</button>
+            <button type="button" class="btn btn-raised btn-primary" *ngIf="isAdding"
+                    (click)="addAdmin( adminForm.value )">확인
+            </button>
             <button type="button" class="btn btn-raised btn-danger" *ngIf="isAdding" (click)="isAdding = false">취소</button>
         </div>
     </div>
