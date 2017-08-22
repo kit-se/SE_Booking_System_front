@@ -5,14 +5,14 @@
             <h3>신고 현황</h3>
         </div>
         <ul class="list-group">
-            <li class="list-group-item">
+            <li class="list-group-item" *ngFor="let report of reportList$ | async">
                 <div class="row">
                     <p class="col-lg-7">
-                        <a [routerLink]="['/admin/report/1']">신고 제목</a>
+                        <a [routerLink]="['/admin/report/1']">{{ report.title }}</a>
                     </p>
-                    <p class="col-lg-1">B1</p>
-                    <p class="col-lg-2">제재자</p>
-                    <p class="col-lg-2">2017-07-17</p>
+                    <p class="col-lg-1">{{ report.section }}</p>
+                    <p class="col-lg-2">{{ report.booker }}</p>
+                    <p class="col-lg-2">{{ report.booking_date }}</p>
                 </div>
                 <div class="list-group-separator"></div>
             </li>

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { PaginationModule } from 'ngx-bootstrap';
+import { ReportService } from '../../shared/http/report.service';
 import { NavbarModule } from '../shared/component/navbar/navbar.module';
 import { ReportDetailModule } from './report-detail/report-detail.module';
 
@@ -17,7 +18,9 @@ import { ReportComponent } from './report.component';
         NavbarModule,
         PaginationModule.forRoot()
     ],
-    declarations: [ ReportComponent ]
+    declarations: [ReportComponent],
+    providers: [ReportService]
+
 })
 export class ReportModule {
 }

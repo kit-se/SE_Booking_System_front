@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
@@ -22,7 +23,8 @@ export class ReportComponent implements OnInit, OnDestroy {
 
     constructor (private bookingService: BookingService,
                  private reportService: ReportService,
-                 private fb: FormBuilder) {
+                 private fb: FormBuilder,
+                 private location: Location) {
     }
 
     ngOnInit () {
@@ -98,7 +100,9 @@ export class ReportComponent implements OnInit, OnDestroy {
             data.append(`file_${i}`, this.fileList[i]);
         }
 
-        this.reportService.postReport(data);
+        this.reportService.postReport(data).subscribe(() => {
+            this.location.back();
+        });
     }
 
     // 사진에 대한 데이터 스키마 생성, 파일리스트에 등록
