@@ -24,8 +24,9 @@
                         <div class="list-group-separator"></div>
                     </div>
                     <div class="list-group-item">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="섹션 이름" *ngIf="isAdding">
+                        <div class="form-group" [formGroup]="sectionForm">
+                            <input type="text" class="form-control" placeholder="섹션 이름" formControlName="name"
+                                   *ngIf="isAdding">
                         </div>
                     </div>
                 </div>
@@ -33,7 +34,8 @@
                     <button type="button" class="btn btn-raised btn-primary" *ngIf="!isAdding"
                             (click)="isAdding = true">공간 추가
                     </button>
-                    <button type="button" class="btn btn-raised btn-primary" *ngIf="isAdding" (click)="addSection()">
+                    <button type="button" class="btn btn-raised btn-primary" *ngIf="isAdding"
+                            (click)="addSection( sectionForm.value )">
                         확인
                     </button>
                     <button type="button" class="btn btn-raised btn-danger" *ngIf="isAdding" (click)="isAdding = false">취소</button>

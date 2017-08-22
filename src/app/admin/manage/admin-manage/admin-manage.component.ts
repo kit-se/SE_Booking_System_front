@@ -27,10 +27,13 @@ export class AdminManageComponent implements OnInit {
     }
 
     public addAdmin (data: any) {
-        this.adminService.postAdmin(data).subscribe(() => {
-            this.adminList$ = this.adminService.getAdminList();
-        });
-        this.isAdding = false;
+        if ( data.credit !== '' && data.name !== '' ) {
+            this.adminService.postAdmin(data).subscribe(() => {
+                this.adminList$ = this.adminService.getAdminList();
+            });
+            this.adminForm.reset();
+            this.isAdding = false;
+        }
     }
 
     public deleteAdmin (id: number) {
