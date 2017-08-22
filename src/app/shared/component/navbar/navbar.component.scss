@@ -1,7 +1,17 @@
-.btn {
-    margin: 0;
-    &.btn-default {
-        color: #FFFFFF;
+.navbar-form {
+    .form-group {
+
+        display: inline-block;
+        .form-control {
+            display: inline-block;
+        }
+    }
+    .btn {
+        margin: 0;
+        padding: 8px 25px;
+        &.btn-default {
+            color: #FFFFFF;
+        }
     }
 }
 
