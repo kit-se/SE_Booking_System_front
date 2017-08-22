@@ -54,14 +54,12 @@ export class MainDashboardComponent implements OnInit {
                 alert('로그인 후 예약이 가능합니다.');
             } else {
                 let bookingTimeString: string = '';
-                console.log(this.selectedTime);
                 this.selectedTime.sort((x, y) => {
                     let timeX, timeY;
                     x < 6 ? timeX = x + 24 : timeX = x;
                     y < 6 ? timeY = y + 24 : timeY = y;
                     return timeX - timeY;
                 });
-                console.log(this.selectedTime);
                 for ( let i = 0; i < this.selectedTime.length - 1; i++ ) { // [12, 13, 14] -> '12, 13, '
                     bookingTimeString = bookingTimeString + this.selectedTime[i] + ', ';
                 }
