@@ -5,6 +5,15 @@
             <h3>신고 현황</h3>
         </div>
         <ul class="list-group">
+            <li class="list-group-item head">
+                <div class="row">
+                    <p class="col-lg-7">신고 제목</p>
+                    <p class="col-lg-1">예약 섹션</p>
+                    <p class="col-lg-2">제재자 학번</p>
+                    <p class="col-lg-2">신고 일자</p>
+                </div>
+                <div class="list-group-separator"></div>
+            </li>
             <li class="list-group-item" *ngFor="let report of reportList$ | async">
                 <div class="row">
                     <p class="col-lg-7">
@@ -14,7 +23,6 @@
                     <p class="col-lg-2">{{ report.booker }}</p>
                     <p class="col-lg-2">{{ report.booking_date }}</p>
                 </div>
-                <div class="list-group-separator"></div>
             </li>
         </ul>
     </div>

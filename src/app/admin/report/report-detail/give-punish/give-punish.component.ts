@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import * as moment from 'moment';
@@ -15,7 +16,7 @@ export class GivePunishComponent implements OnInit {
     dateIterator: any[];
     punishFormGroup: FormGroup;
 
-    constructor (private fb: FormBuilder, private punishService: PunishService, private adminService: AdminService) {
+    constructor (private fb: FormBuilder, private punishService: PunishService, private adminService: AdminService, private location: Location) {
     }
 
     ngOnInit () {
@@ -37,7 +38,9 @@ export class GivePunishComponent implements OnInit {
                 start_date: moment().format('YYYY-MM-DD'),
                 end_date: moment().add(form.getRawValue().period, 'd').format('YYYY-MM-DD')
             };
-            this.punishService.postPunish(data).subscribe();
+            this.punishService.postPunish(data).subscribe(() => {
+                this.location.back();
+            });
         });
     }
 }

@@ -5,14 +5,22 @@
             <h3>제재 현황</h3>
         </div>
         <ul class="list-group">
-            <li class="list-group-item">
+            <li class="list-group-item head">
                 <div class="row">
                     <p class="col-lg-4">제재자 학번</p>
                     <p class="col-lg-3">처리자 이름</p>
                     <p class="col-lg-3">처리 결과</p>
-                    <p class="col-lg-2">2017-07-17</p>
+                    <p class="col-lg-2">처리 일자</p>
                 </div>
                 <div class="list-group-separator"></div>
+            </li>
+            <li class="list-group-item" *ngFor="let punish of punishList$ | async">
+                <div class="row">
+                    <p class="col-lg-4">{{ punish.prebooker }}</p>
+                    <p class="col-lg-3">{{ punish.manager }}</p>
+                    <p class="col-lg-3">{{ punish.result }}</p>
+                    <p class="col-lg-2">{{ punish.start_date | date:'yyyy-MM-dd'}}</p>
+                </div>
             </li>
         </ul>
     </div>
