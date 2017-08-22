@@ -8,17 +8,15 @@
                 </div>
                 <div class="panel-body">
                     <ul class="list-group">
-                        <li class="list-group-item">
+                        <li class="list-group-item" *ngFor="let report of reportList$ | async | slice:0:5">
                             <div class="row">
                                 <p class="col-lg-5 report-title">
-                                    <a [routerLink]="['/admin/report/1']">신고 제목신고 제목신고 제목신고 제목신고
-                                        제목신고 제목신고 제목신고 제목신고 제목신고 제목신고 제목신고 제목신고 제목신고 제목신고 제목</a>
+                                    <a [routerLink]="['/admin/report', report.id]">{{ report.title }}</a>
                                 </p>
-                                <p class="col-lg-2">B1</p>
-                                <p class="col-lg-2">20120350</p>
-                                <p class="col-lg-3">2017-07-17</p>
+                                <p class="col-lg-2">{{ report.section }}</p>
+                                <p class="col-lg-2">{{ report.booker }}</p>
+                                <p class="col-lg-3">{{ report.booking_date }}</p>
                             </div>
-                            <div class="list-group-separator"></div>
                         </li>
                     </ul>
                 </div>
@@ -31,14 +29,13 @@
                 </div>
                 <div class="panel-body">
                     <ul class="list-group">
-                        <li class="list-group-item">
+                        <li class="list-group-item" *ngFor="let punish of punishList$ | async | slice:0:5">
                             <div class="row">
-                                <p class="col-lg-3">제재자 학번</p>
-                                <p class="col-lg-3">처리자 이름</p>
-                                <p class="col-lg-3">예약 정지 3일</p>
-                                <p class="col-lg-3">2017-07-17</p>
+                                <p class="col-lg-3">{{ punish.prebooker }}</p>
+                                <p class="col-lg-3">{{ punish.manager }}</p>
+                                <p class="col-lg-3">{{ punish.result }}</p>
+                                <p class="col-lg-3">{{ punish.start_date | date:'yyyy-MM-dd' }}</p>
                             </div>
-                            <div class="list-group-separator"></div>
                         </li>
                     </ul>
                 </div>
@@ -59,7 +56,6 @@
                                 <p class="col-lg-4">예약 취소자 이름</p>
                                 <p class="col-lg-3">2017-07-17</p>
                             </div>
-                            <div class="list-group-separator"></div>
                         </li>
                     </ul>
                 </div>
