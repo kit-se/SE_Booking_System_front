@@ -5,16 +5,16 @@
         <div class="col-lg-8">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h3 class="page-header">신고 제목</h3>
+                    <h3 class="page-header">{{ title }}</h3>
                     <div class="contents">
-                        <img src="http://via.placeholder.com/1600x900">
-                        <p>신고 내용</p>
+                        <p>{{ content }}</p>
+                        <img *ngFor="let pic of reportPicList" [src]="pic">
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-lg-4">
-            <app-give-punish></app-give-punish>
+            <app-give-punish [suspect]="suspect" [id]="id"></app-give-punish>
         </div>
     </div>
 </div>

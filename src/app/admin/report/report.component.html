@@ -8,7 +8,7 @@
             <li class="list-group-item" *ngFor="let report of reportList$ | async">
                 <div class="row">
                     <p class="col-lg-7">
-                        <a [routerLink]="['/admin/report/1']">{{ report.title }}</a>
+                        <a [routerLink]="['/admin/report', report.id]">{{ report.title }}</a>
                     </p>
                     <p class="col-lg-1">{{ report.section }}</p>
                     <p class="col-lg-2">{{ report.booker }}</p>

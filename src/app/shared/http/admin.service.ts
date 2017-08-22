@@ -19,6 +19,16 @@ export class AdminService {
         });
     }
 
+    public getAdminByCredit (credit: string): Observable<any> {
+        return this.http.get(this.global.url + `/admin/${credit}`).map((res: any) => {
+            if ( res.status === 'success' ) {
+                return res.result;
+            } else {
+                alert('[ERROR]: ' + res.err);
+            }
+        });
+    }
+
     public postAdmin (data: any): Observable<any> {
         return this.http.post(this.global.url + `/post-admin`, data).map((res: any) => {
             if ( res.status === 'success' ) {
