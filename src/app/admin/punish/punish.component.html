@@ -7,20 +7,20 @@
         <ul class="list-group">
             <li class="list-group-item head">
                 <div class="row">
-                    <p class="col-lg-4">제재자 학번</p>
-                    <p class="col-lg-3">처리자 이름</p>
-                    <p class="col-lg-3">처리 결과</p>
-                    <p class="col-lg-2">처리 일자</p>
+                    <p class="col-lg-4 col-md-4 col-sm-4 col-xs-4">제재자</p>
+                    <p class="col-lg-3 col-md-3 col-sm-4 col-xs-4">처리자</p>
+                    <p class="col-lg-3 col-md-3 col-sm-4 col-xs-4">처리 결과</p>
+                    <p class="col-lg-2 col-md-2 hidden-sm hidden-xs">처리 일자</p>
                 </div>
                 <div class="list-group-separator"></div>
             </li>
             <li class="list-group-item"
                 *ngFor="let punish of punishList | slice:(currentPage - 1):(currentPage + itemPerPage - 1)">
                 <div class="row">
-                    <p class="col-lg-4">{{ punish.prebooker }}</p>
-                    <p class="col-lg-3">{{ punish.manager }}</p>
-                    <p class="col-lg-3">{{ punish.result }}</p>
-                    <p class="col-lg-2">{{ punish.start_date | date:'yyyy-MM-dd'}}</p>
+                    <p class="col-lg-4 col-md-4 col-sm-4 col-xs-4">{{ punish.prebooker }}</p>
+                    <p class="col-lg-3 col-md-3 col-sm-4 col-xs-4">{{ punish.manager }}</p>
+                    <p class="col-lg-3 col-md-3 col-sm-4 col-xs-4">{{ punish.result }}</p>
+                    <p class="col-lg-2 col-md-2 hidden-sm hidden-xs">{{ punish.start_date | date:'yyyy-MM-dd'}}</p>
                 </div>
             </li>
         </ul>
