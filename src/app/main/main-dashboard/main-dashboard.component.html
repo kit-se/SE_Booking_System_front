@@ -3,9 +3,10 @@
         <ul class="nav nav-tabs">
             <li><a (click)="switchDate('today')">Today</a></li>
             <li><a (click)="switchDate('tomorrow')">Tomorrow</a></li>
+            <li><a (click)="switchDate('layout')">배치도</a></li>
         </ul>
     </div>
-    <div class="panel-body">
+    <div class="panel-body" *ngIf="dateFlag !== 'layout'">
         <h2>예약 현황 ({{ date }})</h2>
         <ul class="list-group">
             <li class="list-group-item" *ngFor="let section of sectionList$ | async">
@@ -31,6 +32,16 @@
                 </div>
             </li>
             <button class="btn btn-raised btn-primary pull-right" (click)="book()">예약 하기</button>
+        </ul>
+    </div>
+    <div class="panel-body" *ngIf="dateFlag === 'layout'">
+        <h2>배치도</h2>
+        <ul class="list-group">
+            <li class="list-group-item" *ngIf="layout$ | async as layout">
+                <div class="row">
+                    <img class="col-lg-12 col-md-12 col-sm-12 col-xs-12" [src]="layout">
+                </div>
+            </li>
         </ul>
     </div>
 </div>

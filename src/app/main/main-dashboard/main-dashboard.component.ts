@@ -19,6 +19,7 @@ export class MainDashboardComponent implements OnInit {
     selectedSection: string;
     todayBookingInfoList$: Observable<any>;
     tomorrowBookingInfoList$: Observable<any>;
+    layout$: Observable<any>;
     selectedTime: number[];
     needUpdate: boolean;
 
@@ -34,8 +35,8 @@ export class MainDashboardComponent implements OnInit {
         this.needUpdate = false;
     }
 
-    public switchDate (date: string) {
-        this.dateFlag = date;
+    public switchDate (flag: string) {
+        this.dateFlag = flag;
         if ( this.dateFlag === 'today' ) {
             this.date = moment().format('YY. MM. DD');
             this.todayBookingInfoList$ = this.bookingService.getBookingInfoList(this.dateFlag).shareReplay();
@@ -44,6 +45,8 @@ export class MainDashboardComponent implements OnInit {
             this.date = moment().add(1, 'days').format('YY. MM. DD');
             this.tomorrowBookingInfoList$ = this.bookingService.getBookingInfoList(this.dateFlag).shareReplay();
             this.selectedSection = ''
+        } else if ( this.dateFlag === 'layout' ) {
+            this.layout$ = this.sectionService.getLayout().map(result => result.url);
         }
     }
 
