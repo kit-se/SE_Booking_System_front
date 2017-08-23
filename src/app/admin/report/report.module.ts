@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { PaginationModule } from 'ngx-bootstrap';
 import { ReportService } from '../../shared/http/report.service';
 import { NavbarModule } from '../shared/component/navbar/navbar.module';
@@ -12,6 +13,7 @@ import { ReportComponent } from './report.component';
     imports: [
         CommonModule,
         ReportRoutingModule,
+        FormsModule,
 
         ReportDetailModule,
 

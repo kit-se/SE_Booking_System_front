@@ -9,11 +9,15 @@ import { ReportService } from '../../shared/http/report.service';
 })
 export class ReportComponent implements OnInit {
     reportList$: Observable<any>;
+    currentPage: number;
+    itemPerPage: number;
 
     constructor (private reportService: ReportService) {
     }
 
     ngOnInit () {
         this.reportList$ = this.reportService.getReportList();
+        this.itemPerPage = 30;
+        this.currentPage = 1;
     }
 }

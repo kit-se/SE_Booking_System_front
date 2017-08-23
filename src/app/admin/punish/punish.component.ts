@@ -9,12 +9,16 @@ import { PunishService } from '../../shared/http/punish.service';
 })
 export class PunishComponent implements OnInit {
     punishList$: Observable<any>;
+    currentPage: number;
+    itemPerPage: number;
 
     constructor (private punishService: PunishService) {
     }
 
     ngOnInit () {
         this.punishList$ = this.punishService.getPunishList();
+        this.currentPage = 1;
+        this.itemPerPage = 30;
     }
 
 }

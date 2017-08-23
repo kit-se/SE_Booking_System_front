@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class="container">
+<div class="container" *ngIf="reportList$ | async as reportList">
     <div class="panel panel-default">
         <div class="panel-body">
             <h3>신고 현황</h3>
@@ -14,7 +14,8 @@
                 </div>
                 <div class="list-group-separator"></div>
             </li>
-            <li class="list-group-item" *ngFor="let report of reportList$ | async">
+            <li class="list-group-item"
+                *ngFor="let report of reportList | slice:(currentPage - 1):(currentPage + itemPerPage - 1)">
                 <div class="row">
                     <p class="col-lg-7">
                         <a [routerLink]="['/admin/report', report.id]">{{ report.title }}</a>
@@ -27,6 +28,7 @@
         </ul>
     </div>
     <div class="text-center">
-        <pagination [nextText]="'다음'" [previousText]="'이전'"></pagination>
+        <pagination [nextText]="'다음'" [previousText]="'이전'" [totalItems]="reportList.length"
+                    [itemsPerPage]="itemPerPage" [(ngModel)]="currentPage"></pagination>
     </div>
 </div>

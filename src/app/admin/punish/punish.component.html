@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class="container">
+<div class="container" *ngIf="punishList$ | async as punishList">
     <div class="panel panel-default">
         <div class="panel-body">
             <h3>제재 현황</h3>
@@ -14,7 +14,8 @@
                 </div>
                 <div class="list-group-separator"></div>
             </li>
-            <li class="list-group-item" *ngFor="let punish of punishList$ | async">
+            <li class="list-group-item"
+                *ngFor="let punish of punishList | slice:(currentPage - 1):(currentPage + itemPerPage - 1)">
                 <div class="row">
                     <p class="col-lg-4">{{ punish.prebooker }}</p>
                     <p class="col-lg-3">{{ punish.manager }}</p>
@@ -25,6 +26,7 @@
         </ul>
     </div>
     <div class="text-center">
-        <pagination [nextText]="'다음'" [previousText]="'이전'"></pagination>
+        <pagination [nextText]="'다음'" [previousText]="'이전'" [totalItems]="punishList.length" [(ngModel)]="currentPage"
+                    [itemsPerPage]="itemPerPage"></pagination>
     </div>
 </div>
