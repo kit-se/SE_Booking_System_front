@@ -5,8 +5,8 @@
     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 btn-wrapper" *ngIf="timing === 'before'">
         <button class="btn btn-danger" (click)="cancel(bookingItem.id)">예약취소</button>
     </div>
-    <div class="col-lg-2" *ngIf="timing === 'now'">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 btn-wrapper" *ngIf="timing === 'now'">
         <button class="btn btn-danger" (click)="endBooking(bookingItem.id, bookingItem.change_time)">사용종료</button>
     </div>
-    <div class="col-lg-2" *ngIf="timing === 'after'"></div>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 btn-wrapper" *ngIf="timing === 'after'"></div>
 </div>
