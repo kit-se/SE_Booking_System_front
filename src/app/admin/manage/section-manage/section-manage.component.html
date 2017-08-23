@@ -1,21 +1,21 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <img id="layout" *ngIf="layoutUrl$ | async as layout" [src]="layout">
                 <div class="row">
-                    <div class="col-lg-9">
+                    <div class="col-lg-9 col-md-9 col-sm-7 col-xs-7">
                         <div class="form-group">
                             <input type="file" (change)="this.layoutFile = $event.target.files[0]">
                             <input type="text" readonly="" class="form-control" placeholder="배치도 첨부">
                         </div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 col-md-3 col-sm-5 col-xs-5">
                         <button class="btn btn-raised btn-primary" (click)="postLayout()">첨부하기</button>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="list-group">
                     <div class="list-group-item" *ngFor="let section of sectionList$ | async">
                         <p class=" pull-left">{{ section.name }}</p>
