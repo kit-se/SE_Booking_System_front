@@ -8,3 +8,14 @@
         margin-bottom: 10px;
     }
 }
+
+.report-title {
+    margin-bottom: 5px;
+    a {
+        display: inline-block;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

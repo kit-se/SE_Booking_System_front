@@ -7,22 +7,22 @@
         <ul class="list-group">
             <li class="list-group-item head">
                 <div class="row">
-                    <p class="col-lg-7">신고 제목</p>
-                    <p class="col-lg-1">예약 섹션</p>
-                    <p class="col-lg-2">제재자 학번</p>
-                    <p class="col-lg-2">신고 일자</p>
+                    <p class="col-lg-7 col-md-6 col-sm-4 col-xs-4">신고 제목</p>
+                    <p class="col-lg-1 col-md-2 col-sm-4 col-xs-4">예약 섹션</p>
+                    <p class="col-lg-2 col-md-2 col-sm-4 col-xs-4">제재자</p>
+                    <p class="col-lg-2 col-md-2 hidden-sm hidden-xs">신고 일자</p>
                 </div>
                 <div class="list-group-separator"></div>
             </li>
             <li class="list-group-item"
                 *ngFor="let report of reportList | slice:(currentPage - 1):(currentPage + itemPerPage - 1)">
                 <div class="row">
-                    <p class="col-lg-7">
+                    <p class="col-lg-7 col-md-6 col-sm-4 col-xs-4 report-title">
                         <a [routerLink]="['/admin/report', report.id]">{{ report.title }}</a>
                     </p>
-                    <p class="col-lg-1">{{ report.section }}</p>
-                    <p class="col-lg-2">{{ report.booker }}</p>
-                    <p class="col-lg-2">{{ report.booking_date }}</p>
+                    <p class="col-lg-1 col-md-2 col-sm-4 col-xs-4">{{ report.section }}</p>
+                    <p class="col-lg-2 col-md-2 col-sm-4 col-xs-4">{{ report.booker }}</p>
+                    <p class="col-lg-2 col-md-2 hidden-sm hidden-xs">{{ report.booking_date }}</p>
                 </div>
             </li>
         </ul>
