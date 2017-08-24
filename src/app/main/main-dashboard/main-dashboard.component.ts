@@ -80,9 +80,10 @@ export class MainDashboardComponent implements OnInit {
 
                 this.bookingService.book(bookingData).subscribe((res: any) => {
                     if ( res !== 'insert success' ) {
-                        alert('이미 예약된 시간이 포함되어있습니다. 다시 시도해주세요');
+                        alert('선택하신 시간은 이미 예약되었습니다. 다시 시도해주세요');
                         this.switchDate(this.dateFlag);
                     }
+                    alert(`선택하신 시간 ${bookingTimeString}시에 예약이 되었습니다.`);
                     this.switchDate(this.dateFlag);
                     this.needUpdate = true;
                 });
