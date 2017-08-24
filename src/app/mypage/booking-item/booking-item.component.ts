@@ -37,6 +37,8 @@ export class BookingItemComponent implements OnInit {
         } else {
             this.timing = 'now';
         }
+
+        this.changeTime = '';
     }
 
     public cancel (bookingId: number) {
