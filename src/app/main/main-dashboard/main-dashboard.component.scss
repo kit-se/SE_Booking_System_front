@@ -1,7 +1,16 @@
 .panel-heading {
     padding: 0;
-    ul li a {
-        cursor: pointer;
+    .nav-tabs {
+        background-color: #757de8;
+        li {
+            margin-bottom: 0;
+            &.active {
+                background-color: #3f51b5;
+            }
+            a {
+                cursor: pointer;
+            }
+        }
     }
 }
 

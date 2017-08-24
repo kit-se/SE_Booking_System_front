@@ -1,9 +1,9 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <ul class="nav nav-tabs">
-            <li><a (click)="switchDate('today')">Today</a></li>
-            <li><a (click)="switchDate('tomorrow')">Tomorrow</a></li>
-            <li><a (click)="switchDate('layout')">배치도</a></li>
+            <li [ngClass]="{'active': dateFlag === 'today'}"><a (click)="switchDate('today')">Today</a></li>
+            <li [ngClass]="{'active': dateFlag === 'tomorrow'}"><a (click)="switchDate('tomorrow')">Tomorrow</a></li>
+            <li [ngClass]="{'active': dateFlag === 'layout'}"><a (click)="switchDate('layout')">배치도</a></li>
         </ul>
     </div>
     <div class="panel-body" *ngIf="dateFlag !== 'layout'">
