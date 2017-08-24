@@ -1,14 +1,14 @@
 .navbar-form {
     .form-group {
-
         display: inline-block;
+        width: 120px;
         .form-control {
             display: inline-block;
         }
     }
     .btn {
         margin: 0;
-        padding: 8px 25px;
+        padding: 8px 20px;
         &.btn-default {
             color: #FFFFFF;
         }
