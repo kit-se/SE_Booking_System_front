@@ -12,7 +12,7 @@ export class BookingService {
 
     // 예약 현황
     public getBookingInfoList (dateFlag: string): Observable<any> {
-        return this.http.get(this.global.url + `/bookingInfo?date_flag=${dateFlag}`).map((res: any) => {
+        return this.http.get(this.global.url + `/booking-info?date_flag=${dateFlag}`).map((res: any) => {
             if ( res.status === 'success' ) {
                 return res.result;
             } else {

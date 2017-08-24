@@ -6,7 +6,7 @@
         <button class="btn btn-danger" (click)="cancel(bookingItem.id)">예약취소</button>
     </div>
     <div class="col-lg-2" *ngIf="timing === 'now'">
-        <button class="btn btn-danger" (click)="endBooking(bookingItem.id, bookingItem.booking_time)">사용종료</button>
+        <button class="btn btn-danger" (click)="endBooking(bookingItem.id)">사용종료</button>
     </div>
     <div class="col-lg-2" *ngIf="timing === 'after'"></div>
 </div>
