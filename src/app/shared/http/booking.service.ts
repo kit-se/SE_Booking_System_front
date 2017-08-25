@@ -10,7 +10,28 @@ export class BookingService {
     constructor (private http: HttpClient, private global: GlobalService) {
     }
 
-    // 예약 현황
+    // 전체 예약 현황
+    public getBookingList (): Observable<any> {
+        return this.http.get(this.global.url + `/booking`).map((res: any) => {
+            if ( res.status === 'success' ) {
+                return res.result;
+            } else {
+                alert('[ERROR]: ' + res.result);
+            }
+        })
+    }
+
+    public getBookingInfoById (id: number): Observable<any> {
+        return this.http.get(this.global.url + `/booking/${id}`).map((res: any) => {
+            if ( res.status === 'success' ) {
+                return res.result;
+            } else {
+                alert('[ERROR]: ' + res.result);
+            }
+        });
+    }
+
+    // 메인화면용 예약 현황
     public getBookingInfoList (dateFlag: string): Observable<any> {
         return this.http.get(this.global.url + `/booking-info?date_flag=${dateFlag}`).map((res: any) => {
             if ( res.status === 'success' ) {
