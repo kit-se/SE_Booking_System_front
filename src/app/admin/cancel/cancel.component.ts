@@ -20,6 +20,7 @@ export class CancelComponent implements OnInit {
     ngOnInit () {
         this.filteredBookingList$ =
             this.bookingService.getBookingList()
+                .map((list: any[]) => list.filter(item => (item.changer !== item.booker || item.changer === null)))
                 .map((list: any[]) => list.filter(item => item.booking_date === moment().format('YYYY-MM-DD')))
                 .map((list: any[]) => list.filter(item => {
                     let booking_time = item.booking_time.split(', ');
