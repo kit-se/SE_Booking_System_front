@@ -1,25 +1,35 @@
 <app-navbar></app-navbar>
 
-<div class="container">
+<div class="container" *ngIf="filteredBookingList$ | async as bookingList">
     <div class="panel panel-default">
         <div class="panel-body">
-            <h3>예약 취소 현황</h3>
+            <h3>예약 취소</h3>
         </div>
         <ul class="list-group">
-            <li class="list-group-item">
+            <li class="list-group-item head">
                 <div class="row">
-                    <p class="col-lg-3">
-                        <a [routerLink]="['/admin/cancel/1']">예약자 학번</a>
-                    </p>
-                    <p class="col-lg-2">2017-08-21</p>
-                    <p class="col-lg-3">12, 13, 14, 15</p>
-                    <p class="col-lg-2">취소자 이름</p>
+                    <p class="col-lg-3 col-md-3 col-sm-4 col-xs-4">예약자</p>
+                    <p class="col-lg-3 col-md-3 hidden-sm hidden-xs">예약 일자</p>
+                    <p class="col-lg-3 col-md-3 col-sm-4 col-xs-4">예약 시간</p>
+                    <p class="col-lg-3 col-md-3 col-sm-4 col-xs-4">취소자</p>
                 </div>
                 <div class="list-group-separator"></div>
+            </li>
+            <li class="list-group-item"
+                *ngFor="let bookingInfo of bookingList | slice:(currentPage - 1):(currentPage + itemPerPage - 1) ">
+                <div class="row">
+                    <p class="col-lg-3 col-md-3 col-sm-4 col-xs-4">
+                        <a [routerLink]="['/admin/cancel/', bookingInfo.id]">{{ bookingInfo.booker }}</a>
+                    </p>
+                    <p class="col-lg-3 col-md-3 hidden-sm hidden-xs">{{ bookingInfo.booking_date }}</p>
+                    <p class="col-lg-3 col-md-3 col-sm-4 col-xs-4">{{ bookingInfo.booking_time }}</p>
+                    <p class="col-lg-3 col-md-3 col-sm-4 col-xs-4">{{ bookingInfo.changer }}</p>
+                </div>
             </li>
         </ul>
     </div>
     <div class="text-center">
-        <pagination [previousText]="'이전'" [nextText]="'다음'"></pagination>
+        <pagination [previousText]="'이전'" [nextText]="'다음'" [totalItems]="bookingList.length"
+                    [itemsPerPage]="itemPerPage" [(ngModel)]="currentPage"></pagination>
     </div>
 </div>

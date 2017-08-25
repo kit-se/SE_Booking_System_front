@@ -55,7 +55,7 @@ export class BookingItemComponent implements OnInit {
     public endBooking (bookingId: number) {
         this.changeTimeArray = this.bookingItem.booking_time.split(', ');
         for ( let i = 0; i < this.changeTimeArray.length; i++ ) {
-            if ( this.changeTimeArray[i] <= moment().format('HH') ) {
+            if ( +this.changeTimeArray[i] <= +moment().format('HH') ) {
                 if ( i == 0 ) {
                     this.changeTime += this.changeTimeArray[i];
                 } else {

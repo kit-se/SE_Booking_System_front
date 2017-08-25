@@ -49,13 +49,14 @@
                 </div>
                 <div class="panel-body">
                     <ul class="list-group">
-                        <li class="list-group-item">
+                        <li class="list-group-item" *ngFor="let cancel of cancelList$ | async | slice:0:5">
                             <div class="row">
-                                <p class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                    <a [routerLink]="['/admin/cancel/1']">20120350</a>
+                                <p class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+                                    <a [routerLink]="['/admin/cancel/', cancel.id]">{{ cancel.booker }}</a>
                                 </p>
-                                <p class="col-lg-3 col-md-3 col-sm-3 col-xs-3">김종현</p>
-                                <p class="col-lg-5 col-md-5 col-sm-5 col-xs-5">2017-07-17</p>
+                                <p class="col-lg-3 col-md-3 col-sm-3 col-xs-2">{{ cancel.section }}</p>
+                                <p class="col-lg-3 col-md-3 col-sm-3 col-xs-6">{{ cancel.booking_time }}</p>
+                                <p class="col-lg-5 col-md-5 hidden-sm hidden-xs">{{ cancel.booking_date }}</p>
                             </div>
                         </li>
                     </ul>
