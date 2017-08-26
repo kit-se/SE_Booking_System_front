@@ -3,6 +3,12 @@
     text-align: center;
 }
 
+@media (max-width: 767px) {
+    .list-group-item-heading {
+        margin: 10px 0;
+    }
+}
+
 .graph-background {
     height: 31px;
     margin: 4px 0;

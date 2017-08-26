@@ -12,3 +12,9 @@
         margin-bottom: 10px;
     }
 }
+
+@media (max-width: 767px) {
+    .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-12 {
+        padding: 0;
+    }
+}

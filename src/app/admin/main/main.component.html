@@ -1,65 +1,63 @@
 <app-navbar></app-navbar>
 <div class="container">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <a [routerLink]="['/admin/report']">신고 현황</a>
                 </div>
                 <div class="panel-body">
                     <ul class="list-group">
-                        <li class="list-group-item">
+                        <li class="list-group-item" *ngFor="let report of reportList$ | async | slice:0:5">
                             <div class="row">
-                                <p class="col-lg-5 report-title">
-                                    <a [routerLink]="['/admin/report/1']">신고 제목신고 제목신고 제목신고 제목신고
-                                        제목신고 제목신고 제목신고 제목신고 제목신고 제목신고 제목신고 제목신고 제목신고 제목신고 제목</a>
+                                <p class="col-lg-5 col-md-5 col-sm-5 col-xs-5 report-title">
+                                    <a [routerLink]="['/admin/report', report.id]">{{ report.title }}</a>
                                 </p>
-                                <p class="col-lg-2">B1</p>
-                                <p class="col-lg-2">20120350</p>
-                                <p class="col-lg-3">2017-07-17</p>
+                                <p class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{ report.section }}</p>
+                                <p class="col-lg-2 col-md-2 col-sm-2 col-xs-2">{{ report.booker }}</p>
+                                <p class="col-lg-3 col-md-2 hidden-sm hidden-xs">{{ report.booking_date }}</p>
                             </div>
-                            <div class="list-group-separator"></div>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <a [routerLink]="['/admin/punish']">제재 현황</a>
                 </div>
                 <div class="panel-body">
                     <ul class="list-group">
-                        <li class="list-group-item">
+                        <li class="list-group-item" *ngFor="let punish of punishList$ | async | slice:0:5">
                             <div class="row">
-                                <p class="col-lg-3">제재자 학번</p>
-                                <p class="col-lg-3">처리자 이름</p>
-                                <p class="col-lg-3">예약 정지 3일</p>
-                                <p class="col-lg-3">2017-07-17</p>
+                                <p class="col-lg-3 col-md-3 col-sm-3 col-xs-3">{{ punish.prebooker }}</p>
+                                <p class="col-lg-3 col-md-3 col-sm-3 col-xs-3">{{ punish.manager }}</p>
+                                <p class="col-lg-3 col-md-3 col-sm-6 col-xs-6">{{ punish.result }}</p>
+                                <p class="col-lg-3 col-md-3 hidden-sm hidden-xs">{{ punish.start_date |
+                                    date:'yyyy-MM-dd' }}</p>
                             </div>
-                            <div class="list-group-separator"></div>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="col-lg-12">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <a [routerLink]="['/admin/cancel']">예약 취소</a>
                 </div>
                 <div class="panel-body">
                     <ul class="list-group">
-                        <li class="list-group-item">
+                        <li class="list-group-item" *ngFor="let cancel of cancelList$ | async | slice:0:5">
                             <div class="row">
-                                <p class="col-lg-5">
-                                    <a [routerLink]="['/admin/cancel/1']">예약자 학번</a>
+                                <p class="col-lg-2 col-md-2 col-sm-2 col-xs-4">
+                                    <a [routerLink]="['/admin/cancel/', cancel.id]">{{ cancel.booker }}</a>
                                 </p>
-                                <p class="col-lg-4">예약 취소자 이름</p>
-                                <p class="col-lg-3">2017-07-17</p>
+                                <p class="col-lg-1 col-md-1 col-sm-2 col-xs-2">{{ cancel.section }}</p>
+                                <p class="col-lg-2 col-md-2 col-sm-3 hidden-xs">{{ cancel.booking_date }}</p>
+                                <p class="col-lg-7 col-md-7 col-sm-5 col-xs-6">{{ cancel.booking_time }}</p>
                             </div>
-                            <div class="list-group-separator"></div>
                         </li>
                     </ul>
                 </div>

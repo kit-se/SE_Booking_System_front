@@ -19,6 +19,7 @@ export class MainDashboardComponent implements OnInit {
     selectedSection: string;
     todayBookingInfoList$: Observable<any>;
     tomorrowBookingInfoList$: Observable<any>;
+    layout$: Observable<any>;
     selectedTime: number[];
     needUpdate: boolean;
 
@@ -34,8 +35,8 @@ export class MainDashboardComponent implements OnInit {
         this.needUpdate = false;
     }
 
-    public switchDate (date: string) {
-        this.dateFlag = date;
+    public switchDate (flag: string) {
+        this.dateFlag = flag;
         if ( this.dateFlag === 'today' ) {
             this.date = moment().format('YY. MM. DD');
             this.todayBookingInfoList$ = this.bookingService.getBookingInfoList(this.dateFlag).shareReplay();
@@ -44,6 +45,8 @@ export class MainDashboardComponent implements OnInit {
             this.date = moment().add(1, 'days').format('YY. MM. DD');
             this.tomorrowBookingInfoList$ = this.bookingService.getBookingInfoList(this.dateFlag).shareReplay();
             this.selectedSection = ''
+        } else if ( this.dateFlag === 'layout' ) {
+            this.layout$ = this.sectionService.getLayout().map(result => result.url);
         }
     }
 
@@ -54,6 +57,12 @@ export class MainDashboardComponent implements OnInit {
                 alert('로그인 후 예약이 가능합니다.');
             } else {
                 let bookingTimeString: string = '';
+                this.selectedTime.sort((x, y) => {
+                    let timeX, timeY;
+                    x < 6 ? timeX = x + 24 : timeX = x;
+                    y < 6 ? timeY = y + 24 : timeY = y;
+                    return timeX - timeY;
+                });
                 for ( let i = 0; i < this.selectedTime.length - 1; i++ ) { // [12, 13, 14] -> '12, 13, '
                     bookingTimeString = bookingTimeString + this.selectedTime[i] + ', ';
                 }
@@ -71,9 +80,10 @@ export class MainDashboardComponent implements OnInit {
 
                 this.bookingService.book(bookingData).subscribe((res: any) => {
                     if ( res !== 'insert success' ) {
-                        alert('이미 예약된 시간이 포함되어있습니다. 다시 시도해주세요');
+                        alert('선택하신 시간은 이미 예약되었습니다. 다시 시도해주세요');
                         this.switchDate(this.dateFlag);
                     }
+                    alert(`선택하신 시간 ${bookingTimeString}시에 예약이 되었습니다.`);
                     this.switchDate(this.dateFlag);
                     this.needUpdate = true;
                 });

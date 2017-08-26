@@ -1,24 +1,34 @@
 <app-navbar></app-navbar>
-<div class="container">
+<div class="container" *ngIf="reportList$ | async as reportList">
     <div class="panel panel-default">
         <div class="panel-body">
             <h3>신고 현황</h3>
         </div>
         <ul class="list-group">
-            <li class="list-group-item">
+            <li class="list-group-item head">
                 <div class="row">
-                    <p class="col-lg-7">
-                        <a [routerLink]="['/admin/report/1']">신고 제목</a>
-                    </p>
-                    <p class="col-lg-1">B1</p>
-                    <p class="col-lg-2">제재자</p>
-                    <p class="col-lg-2">2017-07-17</p>
+                    <p class="col-lg-7 col-md-6 col-sm-4 col-xs-4">신고 제목</p>
+                    <p class="col-lg-1 col-md-2 col-sm-4 col-xs-4">예약 섹션</p>
+                    <p class="col-lg-2 col-md-2 col-sm-4 col-xs-4">제재자</p>
+                    <p class="col-lg-2 col-md-2 hidden-sm hidden-xs">신고 일자</p>
                 </div>
                 <div class="list-group-separator"></div>
+            </li>
+            <li class="list-group-item"
+                *ngFor="let report of reportList | slice:(currentPage - 1):(currentPage + itemPerPage - 1)">
+                <div class="row">
+                    <p class="col-lg-7 col-md-6 col-sm-4 col-xs-4 report-title">
+                        <a [routerLink]="['/admin/report', report.id]">{{ report.title }}</a>
+                    </p>
+                    <p class="col-lg-1 col-md-2 col-sm-4 col-xs-4">{{ report.section }}</p>
+                    <p class="col-lg-2 col-md-2 col-sm-4 col-xs-4">{{ report.booker }}</p>
+                    <p class="col-lg-2 col-md-2 hidden-sm hidden-xs">{{ report.booking_date }}</p>
+                </div>
             </li>
         </ul>
     </div>
     <div class="text-center">
-        <pagination [nextText]="'다음'" [previousText]="'이전'"></pagination>
+        <pagination [nextText]="'다음'" [previousText]="'이전'" [totalItems]="reportList.length"
+                    [itemsPerPage]="itemPerPage" [(ngModel)]="currentPage"></pagination>
     </div>
 </div>

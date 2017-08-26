@@ -6,3 +6,18 @@ p {
     margin: 0;
     padding: 5px 30px;
 }
+
+@media (max-width: 767px) {
+    .btn-wrapper {
+        padding: 0;
+        .btn {
+            padding: 5px 10px;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .col-xs-2, .col-xs-3, .col-xs-4 {
+        padding: 0;
+    }
+}

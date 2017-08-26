@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
+import { isNullOrUndefined } from 'util';
 import { LoginService } from '../../http/login.service';
 
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
-    styleUrls: [ './navbar.component.scss' ]
+    styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
     loginFormGroup: FormGroup;
@@ -24,8 +26,8 @@ export class NavbarComponent implements OnInit {
             this.id = sessionStorage.getItem('id');
         }
         this.loginFormGroup = this.fb.group({
-            id: [ '', Validators.required ],
-            password: [ '', Validators.required ]
+            id: ['', Validators.required],
+            password: ['', Validators.required]
         });
     }
 
@@ -45,7 +47,12 @@ export class NavbarComponent implements OnInit {
                         this.isLogin = true;
                         this.id = value.id;
                     } else {
-                        alert(`아이디 혹은 비밀번호가 틀렸습니다.`);
+                        if ( !isNullOrUndefined(res.suspect) ) {
+                            alert(
+                                `${res.suspect.booker}님은 ${res.suspect.booking_date} ${res.suspect.booking_time}시 이용 간 정리정돈 미실시 혹은 기물파손에 대한 신고가 접수되어 ${ moment(res.suspect.start_date).format('YYYY-MM-DD') }부터 ${ moment(res.suspect.end_date).format('YYYY-MM-DD') }까지 이용 정지 상태입니다.`);
+                        } else {
+                            alert(`아이디 혹은 비밀번호가 틀렸습니다.`);
+                        }
                     }
                 },
                 (error: any) => {

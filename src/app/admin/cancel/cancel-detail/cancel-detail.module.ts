@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { BookingService } from '../../../shared/http/booking.service';
 import { NavbarModule } from '../../shared/component/navbar/navbar.module';
 import { CancelDetailComponent } from './cancel-detail.component';
 
@@ -11,7 +12,8 @@ import { CancelDetailComponent } from './cancel-detail.component';
         RouterModule,
         NavbarModule
     ],
-    declarations: [ CancelDetailComponent ]
+    declarations: [CancelDetailComponent],
+    providers: [BookingService]
 })
 export class CancelDetailModule {
 }

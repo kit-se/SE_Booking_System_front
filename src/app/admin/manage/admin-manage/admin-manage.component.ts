@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { AdminService } from '../../../shared/http/admin.service';
 
 @Component({
     selector: 'app-admin-manage',
@@ -7,21 +10,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminManageComponent implements OnInit {
     isAdding: boolean;
+    adminForm: FormGroup;
+    adminList$: Observable<any>;
 
-    constructor () {
+    constructor (private adminService: AdminService, private fb: FormBuilder) {
     }
 
     ngOnInit () {
+        this.adminForm = this.fb.group({
+            credit: ['', [Validators.required]],
+            name: ['', [Validators.required]],
+            position: ['', [Validators.required]]
+        });
         this.isAdding = false;
+        this.adminList$ = this.adminService.getAdminList();
     }
 
-    public addAdmin() {
-        // todo 서버로 관리자 전송
-        this.isAdding = false;
+    public addAdmin (data: any) {
+        if ( data.credit !== '' && data.name !== '' ) {
+            this.adminService.postAdmin(data).subscribe(() => {
+                this.adminList$ = this.adminService.getAdminList();
+            });
+            this.adminForm.reset();
+            this.isAdding = false;
+        }
     }
 
-    public deleteAdmin() {
-        // todo 삭제할 admin id 받아 와야함.
-        // todo 서버로 삭제 보냄
+    public deleteAdmin (id: number) {
+        this.adminService.deleteAdmin(id).subscribe(() => {
+            this.adminList$ = this.adminService.getAdminList();
+        })
     }
 }

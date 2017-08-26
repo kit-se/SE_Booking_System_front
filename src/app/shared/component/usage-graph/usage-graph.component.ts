@@ -72,16 +72,23 @@ export class UsageGraphComponent implements OnInit, AfterContentChecked {
                             for ( let i = 0; i < (startIndex - timeIndex); i++ ) { // 사용자가 선택한 시간에서 시작 시간까지 예약시간 추가.
                                 if ( !this.bookedTimeTable[timeIndex + i] ) { // 예약 되어 있지 않은 시간만 예약 시간에 추가.
                                     this.book(timeIndex + i, this.indexToTime(timeIndex + i));
+                                } else {
+                                    alert('이미 예약된 시간이 사이에 끼어 있습니다.');
+                                    this.cancel();
+                                    break;
                                 }
                             }
                         } else if ( endIndex < timeIndex ) { // 사용자가 선택한 시간이 end 보다 늦은 경우
                             for ( let i = 1; i <= (timeIndex - endIndex); i++ ) {
                                 if ( !this.bookedTimeTable[endIndex + i] ) {
                                     this.book(endIndex + i, this.indexToTime(endIndex + i));
+                                } else {
+                                    alert('이미 예약된 시간이 사이에 끼어 있습니다.');
+                                    this.cancel();
+                                    break;
                                 }
                             }
                         }
-
                     } else { // 사용자가 선택한 시간을 다시 선택하면 취소.
                         this.cancel();
                     }
